@@ -19,6 +19,7 @@
                         <li><a href="signin.php">Log-In</a></li>
                         <li><a>Log-Out</a></li>
                         <li><a href="signup.php">Register</a></li>
+                        <li><a href="pages/addProduct.php">Sell</a></li>
                         <li><a>Profile</a></li>
                         <li><a>Settings</a></li>
                         <li><a>Orders</a></li>
@@ -26,10 +27,6 @@
                 </div>
             </div>
             <div class="sections">
-                <select class="selectpicker" data-width="fit">
-                    <option data-content='<span class="flag"></span>'>English</option>
-                    <option data-content='<span class="flag"></span>'>Español</option>
-                </select>
                 <a href="../index.php">DefaultCube</a>
                 <input id="burgermenu" type="checkbox" />
                 <div class="burger">
