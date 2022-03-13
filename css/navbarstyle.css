@@ -1,0 +1,202 @@
+.navbar {
+  position: fixed;
+  display: flex;
+  float: inherit;
+  width: 100%;
+  z-index: 100;
+}
+
+.flag {
+  background-image: url(../img/cube.png);
+  width: var(--navbar);
+}
+
+.cart {
+  padding: 10px;
+  margin: 10px;
+  height: var(--navbar);
+  background-color: var(--accent-color);
+  border-radius: 10px;
+  min-width: var(--navbar);
+  max-width: var(--navbar);
+  cursor: pointer;
+  box-shadow: 0px 0px 2px 0px rgb(77, 77, 77);
+}
+
+.cart img {
+  object-fit: cover;
+  min-width: var(--navbar);
+  max-width: var(--navbar);
+}
+
+.sections {
+  transition: height 0.4s ease;
+  padding: 10px;
+  margin: 10px;
+  height: var(--navbar);
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 30px;
+  font-weight: bolder;
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0px 0px 2px 0px rgb(77, 77, 77);
+}
+
+.dropdown {
+  display: flex;
+  list-style: none;
+  float: right;
+  margin: 0px;
+  overflow: hidden;
+}
+
+.dropdown li {
+  height: var(--navbar);
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+}
+
+.account {
+  padding: 10px;
+  margin: 10px;
+  height: var(--navbar);
+  background-image: url("..\\img\\propic.png");
+  object-fit: cover;
+  background-position: 50% 50%;
+  background-size: contain;
+  border-radius: 100px;
+  min-width: var(--navbar);
+  max-width: var(--navbar);
+  cursor: pointer;
+  box-shadow: 0px 0px 2px 0px rgb(77, 77, 77);
+}
+
+.burger {
+  cursor: pointer;
+  padding: 0px;
+  margin: 0px;
+  height: auto;
+  background-color: rgba(185, 185, 185, 0);
+  display: none;
+}
+
+#burgermenu {
+  display: none;
+  position: fixed;
+  margin: 0px;
+  width: 35px;
+  height: 39px;
+  right: 100px;
+  opacity: 0;
+  z-index: 1000;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  border-radius: 100px;
+  width: 35px;
+  height: 5px;
+  background-color: rgb(255, 255, 255);
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+#burgermenu:checked ~ .burger .bar1 {
+  -webkit-transform: rotate(45deg) translate(-8px, 8px);
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+#burgermenu:checked ~ .burger .bar2 {
+  opacity: 0;
+}
+
+#burgermenu:checked ~ .burger .bar3 {
+  -webkit-transform: rotate(-45deg) translate(9px, -6px);
+  transform: rotate(-45deg) translate(9px, -6px);
+}
+
+#burgermenu:checked ~ .dropdown {
+  height: auto;
+}
+
+#burgermenu {
+  display: inline;
+}
+.sections {
+  height: auto;
+}
+.dropdown {
+  width: 100%;
+  display: inline-block;
+  height: 0px;
+}
+
+.dropdown li {
+  text-align: left;
+  padding: 0px;
+}
+
+.burger {
+  float: right;
+  display: inline-block;
+}
+
+@media only screen and (max-width: 600px) {
+  #burgermenu {
+    right: 70px;
+  }
+  .navbar {
+    background-color: var(--secondary-color);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  .sections {
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    margin: 0px;
+    border-radius: 0;
+  }
+  .sections ul li {
+    text-align: left;
+    padding: 0;
+  }
+  .account {
+    padding: 0px;
+    box-shadow: none;
+  }
+  .cart {
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    filter: invert();
+    box-shadow: none;
+  }
+}
+
+/*-------------------------------------------------------
+
+NAVBAR HOVER
+
+-------------------------------------------------------*/
+
+.account-dropdown {
+  position: absolute;
+  text-align: left;
+  background-color: var(--secondary-color);
+  min-width: 160px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  top: 80px;
+  padding: 12px 16px;
+  z-index: 1;
+  left: -1000px;
+  transition: left 1s;
+  transition-delay: 0.1s;
+}
+
+.account:hover .account-dropdown {
+  left: 16px;
+  transition: left 0.2s;
+}

@@ -1,0 +1,39 @@
+.header__image {
+  background-image: url("..\\img\\escaping-defaul-cube.gif");
+  min-height: 1000px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.header__image__text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--accent-color);
+  font-size: 100px;
+  text-shadow: 3px 3px 0px black;
+}
+
+@media only screen and (max-width: 950px) {
+  .header__image {
+    min-height: 500px;
+  }
+  .header__image__text {
+    font-size: 40px;
+    top: 20%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .header__image {
+    min-height: 400px;
+  }
+
+  .header__image__text {
+    font-size: 40px;
+    top: 20%;
+  }
+}
