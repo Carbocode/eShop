@@ -45,7 +45,38 @@
             </div>
         </div>
     </header>
+    <br><br><br><br><br><br><br>
 
+    <section>
+        <div class="screen">
+            <div class="screen-header">
+                <div class="screen-header-left">
+                    <div class="screen-header-button close"></div>
+                    <div class="screen-header-button maximize"></div>
+                    <div class="screen-header-button minimize"></div>
+                </div>
+            </div>
+            <div class="screen-body">
+                <div class="screen-body-item left">
+                    <div class="app-title">SELL</div>
+                </div>
+                <div class="screen-body-item">
+                    <form class="app-form" method="POST">
+                        <div class="app-form-group message">
+                            <input type="file" name="file" class="app-form-control" accept="image/png, image/jpeg"
+                                multiple>
+                        </div>
+                        <div class="app-form-group message">
+                            <input name="name" placeholder="Nome" class="app-form-control" />
+                        </div>
+                        <div class="app-form-group buttons">
+                            <input name="price" placeholder="Prezzo" class="app-form-control" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 
 </html>
