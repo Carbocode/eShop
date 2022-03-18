@@ -10,13 +10,13 @@ if (isset($_POST["Signin"])){
     $stmt=$pdo->query("SELECT * FROM account WHERE username='$username' AND pass='$password'");
     if($stmt->rowCount() > 0){
         foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $row){
-            print "<script>alert('benvenuto'); window.location.href ='../index.php';</script>";        
+            print "<script>alert('benvenuto $username'); window.location.href ='../index.php';</script>";        
         }
         $date = date("d/m/Y H:i:s");
         setcookie("ultimavisita", $date,  time() + (86400 * 30), "/");
     }
     else{
-        print "<script>alert('ciccia');</script>";
+        print "<script>alert('Account insistente');</script>";
     }
     $pdo=null;
 }

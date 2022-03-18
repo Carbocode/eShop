@@ -9,7 +9,8 @@ try{
             nome TEXT NOT NULL,
             surname TEXT NOT NULL,
             email TEXT NOT NULL,
-            pass TEXT NOT NULL
+            pass TEXT NOT NULL,
+            tipo TEXT NOT NULL
         )",
         "CREATE TABLE products(
             id_prod INT PRIMARY KEY,
@@ -17,9 +18,10 @@ try{
             prezzo DOUBLE NOT NULL,
             img TEXT NOT NULL
         )",
-        "CREATE TABLE cart(
-            username VARCHAR(30) PRIMARY KEY,
-            id_prod INT PRIMARY KEY,
+        "CREATE TABLE ordini(
+            username VARCHAR(30),
+            id_prod INT,
+            PRIMARY KEY(username, id_prod)
         )"
     ];
 
@@ -30,7 +32,6 @@ try{
         foreach($sqlTables as $table){
             $pdo->query($table);
         }
-        
     }
 }
 catch (PDOExepction $err){

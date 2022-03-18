@@ -31,7 +31,7 @@ if (isset($_POST["Signup"])){
         
 
     if($uniqueUsername && $validEmail && $uniqueEmail){
-        $sqlInsert = "INSERT INTO account(username, nome, surname, email, pass) value('$username', '$name', '$surname', '$email', '$password')";
+        $sqlInsert = "INSERT INTO account(username, nome, surname, email, pass, tipo) value('$username', '$name', '$surname', '$email', '$password', 'normale')";
         $pdo->query($sqlInsert);
         echo "<script>alert('Registrato con Successo'); window.location.href ='../index.php';</script>";
     }

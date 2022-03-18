@@ -19,7 +19,7 @@
                         <li><a href="signin.php">Log-In</a></li>
                         <li><a>Log-Out</a></li>
                         <li><a href="signup.php">Register</a></li>
-                        <li><a href="pages/addProduct.php">Sell</a></li>
+                        <li><a href="addProduct.php">Sell</a></li>
                         <li><a>Profile</a></li>
                         <li><a>Settings</a></li>
                         <li><a>Orders</a></li>
@@ -61,17 +61,22 @@
                     <div class="app-title">SELL</div>
                 </div>
                 <div class="screen-body-item">
-                    <form class="app-form" method="POST">
+                    <form class="app-form" method="POST" enctype="multipart/form-data">
                         <div class="app-form-group message">
-                            <input type="file" name="file" class="app-form-control" accept="image/png, image/jpeg"
+                            <input type="file" name="images" class="app-form-control" accept="image/png, image/jpeg"
                                 multiple>
                         </div>
                         <div class="app-form-group message">
                             <input name="name" placeholder="Nome" class="app-form-control" />
                         </div>
                         <div class="app-form-group buttons">
-                            <input name="price" placeholder="Prezzo" class="app-form-control" />
+                            <input type="number" step="0.01" name="price" placeholder="Prezzo"
+                                class="app-form-control" />
                         </div>
+                        <div class="app-form-group buttons">
+                            <input type="submit" name="submitProd" class="app-form-button" value="Add" />
+                        </div>
+                        <?php require '../php/addProd.php'; ?>
                     </form>
                 </div>
             </div>
