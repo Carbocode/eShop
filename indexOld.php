@@ -43,7 +43,7 @@
                 </ul>
             </div>
             <div class="cart">
-                <a href="pages/cart.php"><img src="img/shopping-cart.png" /></a>
+                <a class="cart-img" href="pages/cart.php"></a>
             </div>
         </div>
 

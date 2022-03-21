@@ -1,4 +1,4 @@
-export default function Header(){
+function Header(){
     return (
             <div class="navbar">
                 <div class="account">
