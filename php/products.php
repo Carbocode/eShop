@@ -4,8 +4,6 @@ $dbName = "DefaultCube";
 $currentDir = "../";
 $pdo->query("use $dbName");
 
-$addProduct="INSERT INTO products value(1,'Cazzone',20,'C:/Desktop/img.png')";
-
 $query = "SELECT * FROM products";
 $stmt= $pdo -> query($query);
 if($stmt->rowCount() > 0){

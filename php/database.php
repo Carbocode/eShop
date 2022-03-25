@@ -32,6 +32,8 @@ try{
         foreach($sqlTables as $table){
             $pdo->query($table);
         }
+        $sqlInsert = "INSERT INTO account(username, nome, surname, email, pass, tipo) value('admin', 'admin', 'admin', 'admin', 'admin', 'admin')";
+        $pdo->query($sqlInsert);
     }
 }
 catch (PDOExepction $err){

@@ -8,7 +8,7 @@ if (isset($_POST["Show"])){
     $stmt= $pdo -> query($query);
 
     foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $row){
-        print "Account: ".$row["username"]." ".$row["email"]." ".$row["pass"]." ".$row["nome"]." ".$row["surname"]."<br>";
+        print "Account: ".$row["username"]." ".$row["email"]." ".$row["pass"]." ".$row["nome"]." ".$row["surname"]." ".$row["tipo"]."<br>";
     }
     $pdo=null;
 }
