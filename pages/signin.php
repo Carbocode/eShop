@@ -107,13 +107,6 @@
         </div>
     </section>
 
-    <div>
-        <form method="POST">
-            <input type="submit" name="Show" value="Show Table" style="border-radius:10px;">
-        </form>
-        <?php require '../php/table.php'; ?>
-    </div>
-
 </body>
 
 </html>

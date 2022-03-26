@@ -77,8 +77,17 @@
     <br><br><br><br><br><br><br>
 
     <div>
-        <table>
+        <h3>Click on headers to sort</h3>
+        <script src="../js/sortTable.js"></script>
+        <table class="sortable">
             <tr>
+                <th>
+                    <div class="screen-header-left">
+                        <div class="screen-header-button close"></div>
+                        <div class="screen-header-button maximize"></div>
+                        <div class="screen-header-button minimize"></div>
+                    </div>
+                </th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Password</th>
@@ -90,14 +99,6 @@
             </tr>
             <?php require '../php/table.php'; ?>
         </table>
-
-        <style>
-        table,
-        th,
-        td {
-            border: 1px solid;
-        }
-        </style>
     </div>
 
 </body>

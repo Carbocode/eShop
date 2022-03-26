@@ -6,9 +6,10 @@ $verifica= $pdo->query("use $dbName");
 
 $query = "SELECT * FROM account";
 $stmt= $pdo -> query($query);
-
+$i=0;
 foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $row){
-    print "<tr><form method='POST'><td><input name='Username' value='".$row["username"]."' /></td> <td>".$row["email"]."</td> <td>".$row["pass"]."</td> <td>".$row["nome"]."</td> <td>".$row["surname"]."</td> <td>".$row["tipo"]."</td><td><input type='submit' name='Delete' value='Delete'/></td><td><input type='submit' name='Upgrade' value='Upgrade'/></td></form></tr>";
+    $i++;
+    print "<tr class='item'><form method='POST'><td>$i</td><td><input name='Username' value='".$row["username"]."' /></td> <td>".$row["email"]."</td> <td>".$row["pass"]."</td> <td>".$row["nome"]."</td> <td>".$row["surname"]."</td> <td>".$row["tipo"]."</td><td><input type='submit' name='Delete' value='Delete'/></td><td><input type='submit' name='Upgrade' value='Upgrade'/></td></form></tr>";
 }
 
 if(isset($_POST["Delete"])){
