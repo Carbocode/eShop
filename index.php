@@ -74,11 +74,11 @@
                 <a class="cart-img" href="pages/cart.php"></a>
             </div>
         </div>
-
-        <div class="header__image">
-            <div class="header__image__text">COMPRA IL TUO CUBO</div>
-        </div>
     </header>
+
+    <div class="header__image">
+        <div class="header__image__text">COMPRA IL TUO CUBO</div>
+    </div>
 
     <h1 style="font-size: 45px; margin: 20px">Products</h1>
     <section class="store">
