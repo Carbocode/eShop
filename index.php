@@ -42,6 +42,7 @@
                                         foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $row){
                                             if($row['username']==$_SESSION['nome']){
                                                 echo "<li><a href='pages/addProduct.php'>Sell</a></li>";
+                                                echo "<li><a href='pages/table.php'>Users</a></li>";
                                             }
                                         }
                                         $date = date("d/m/Y H:i:s");

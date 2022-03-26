@@ -74,47 +74,31 @@
         </div>
     </header>
 
-    <br>
+    <br><br><br><br><br><br><br>
 
-    <section>
-        <div class="screen">
-            <div class="screen-header">
-                <div class="screen-header-left">
-                    <div class="screen-header-button close"></div>
-                    <div class="screen-header-button maximize"></div>
-                    <div class="screen-header-button minimize"></div>
-                </div>
-            </div>
-            <div class="screen-body">
-                <div class="screen-body-item left">
-                    <div class="app-title">SIGN UP</div>
-                </div>
-                <div class="screen-body-item">
-                    <form class="app-form" method="POST">
-                        <div class="app-form-group">
-                            <input name="name" class="app-form-control" placeholder="Name" />
-                        </div>
-                        <div class="app-form-group">
-                            <input name="surname" class="app-form-control" placeholder="Surname" />
-                        </div>
-                        <div class="app-form-group message">
-                            <input name="username" class="app-form-control" placeholder="Username" />
-                        </div>
-                        <div class="app-form-group">
-                            <input type="email" name="email" class="app-form-control" placeholder="E-Mail" />
-                        </div>
-                        <div class="app-form-group message">
-                            <input type="password" name="password" class="app-form-control" placeholder="Password" />
-                        </div>
-                        <div class="app-form-group buttons">
-                            <input type="submit" name="Signup" class="app-form-button" value="Sign-Up" />
-                        </div>
-                        <?php require '../php/register.php'; ?>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div>
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Type</th>
+                <th>Delete</th>
+                <th>Upgrade</th>
+            </tr>
+            <?php require '../php/table.php'; ?>
+        </table>
+
+        <style>
+        table,
+        th,
+        td {
+            border: 1px solid;
+        }
+        </style>
+    </div>
 
 </body>
 
