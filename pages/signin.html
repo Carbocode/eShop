@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/script.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="navbar">
+        <div class="account">
+          <div class="account-dropdown">
+            <ul id="#settings"></ul>
+          </div>
+        </div>
+        <div class="sections">
+          <a href="http://localhost/index.php">DefaultCube</a>
+          <input id="burgermenu" type="checkbox" />
+          <div class="burger">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+          </div>
+          <ul class="dropdown">
+            <li><a href="">Shop</a></li>
+            <li><a href="">Commission</a></li>
+            <li><a href="">News</a></li>
+          </ul>
+        </div>
+        <div class="cart">
+          <a class="cart-img" href="http://localhost/pages/cart.php"></a>
+        </div>
+      </div>
+    </header>
+
+    <br />
+
+    <section>
+      <div class="screen">
+        <div class="screen-header">
+          <div class="screen-header-left">
+            <div class="screen-header-button close"></div>
+            <div class="screen-header-button maximize"></div>
+            <div class="screen-header-button minimize"></div>
+          </div>
+        </div>
+        <div class="screen-body">
+          <div class="screen-body-item left">
+            <div class="app-title">LOGIN IN</div>
+          </div>
+          <div class="screen-body-item">
+            <form class="app-form">
+              <div class="app-form-group message">
+                <input
+                  name="username"
+                  id="username"
+                  class="app-form-control"
+                  placeholder="Username"
+                />
+              </div>
+              <div class="app-form-group message">
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  class="app-form-control"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="app-form-group buttons">
+                <input
+                  type="submit"
+                  name="Signin"
+                  id="Signin"
+                  onclick="login(event)"
+                  class="app-form-button"
+                  value="Sign-In"
+                />
+              </div>
+            </form>
+
+            <div id="risultato"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function login(e) {
+        e.preventDefault();
+        $.ajax({
+          type: "POST",
+          url: "http://localhost/php/login.php",
+          data: {
+            username: $("#username").val(),
+            password: $("#password").val(),
+          },
+          success: function (res) {
+            alert(res);
+            window.location.href = "http://localhost/index.php";
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

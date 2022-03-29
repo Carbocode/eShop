@@ -3,7 +3,7 @@ $pdo = new PDO("mysql:host=localhost;","root","mysql");
 $dbName = "DefaultCube";
 $verifica= $pdo->query("use $dbName");
 
-if (isset($_POST["Signup"])){
+if (isset($_POST["username"])){
     $name = $_POST["name"];
     $surname = $_POST["surname"];
     $username = $_POST["username"];
@@ -33,7 +33,7 @@ if (isset($_POST["Signup"])){
     if($uniqueUsername && $validEmail && $uniqueEmail){
         $sqlInsert = "INSERT INTO account(username, nome, surname, email, pass, tipo) value('$username', '$name', '$surname', '$email', '$password', 'normale')";
         $pdo->query($sqlInsert);
-        echo "<script>alert('Registrato con Successo'); window.location.href ='../index.php';</script>";
+        echo "Registrato con Successo";
     }
 }
 ?>

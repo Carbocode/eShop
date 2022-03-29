@@ -6,8 +6,4 @@ if(isset($_POST['DeleteCookie'])){
         setcookie('ultimavisita', null);
     }
 }
-
-if(isset($_COOKIE['ultimavisita'])) {
-    print "<div style='background-color:orange;'>Accesso eseguito in data: ".$_COOKIE['ultimavisita']."</div>";
-}
 ?>
