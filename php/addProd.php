@@ -4,13 +4,13 @@ $dbName = "DefaultCube";
 $currentDir = "../";
 $verifica= $pdo->query("use $dbName");
 
-if(isset($_POST["submitProd"])) {
+if(isset($_POST["name"])) {
     $target_dir = "userImg/products/";
-    $target_file = $target_dir.basename($_FILES["images"]["name"]);
+    $target_file = $target_dir.basename($_FILES["image"]["name"]);
     $uploadOk = 1;
 
     // Check if image file is a actual image or fake image
-    $check = getimagesize($_FILES["images"]["tmp_name"]);
+    $check = getimagesize($_FILES["image"]["tmp_name"]);
     if($check !== false) {
         $uploadOk = 1;
     } else {
@@ -19,7 +19,7 @@ if(isset($_POST["submitProd"])) {
     }
 
     // Check file size
-    if ($_FILES["images"]["size"] > 2000000) {
+    if ($_FILES["image"]["size"] > 2000000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
@@ -50,10 +50,10 @@ if(isset($_POST["submitProd"])) {
         echo "Sorry, your file was not uploaded.";
     // if everything is ok, try to upload file
     } else {
-        if (move_uploaded_file($_FILES["images"]["tmp_name"], $currentDir.$target_file)) {
-        //echo "The file ". htmlspecialchars( basename( $_FILES["images"]["name"])). " has been uploaded.";
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $currentDir.$target_file)) {
+        echo "The file ". htmlspecialchars( basename( $_FILES["image"]["name"])). " has been uploaded.";
         } else {
-        //echo "Sorry, there was an error uploading your file.";
+        echo "Sorry, there was an error uploading your file.";
         }
     }
 }
