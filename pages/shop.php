@@ -5,14 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DefaultCube</title>
-    <link rel="stylesheet" href="css\style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="../js/script.js"></script>
 </head>
 
 <body>
-    <?php require('php/timeCookie.php')?>
-    <?php require('php/database.php'); ?>
 
     <header>
         <div class="navbar">
@@ -31,8 +29,8 @@
                     <div class="bar3"></div>
                 </div>
                 <ul class="dropdown">
-                    <li><a href="">Shop</a></li>
-                    <li><a href="">Commission</a></li>
+                    <li><a href="">Products</a></li>
+                    <li><a href="">Become a Cuber</a></li>
                     <li><a href="">News</a></li>
                 </ul>
             </div>
@@ -42,13 +40,11 @@
         </div>
     </header>
 
-    <div class="header__image">
-        <div class="header__image__text">COMPRA IL TUO CUBO</div>
-    </div>
+    <br><br><br><br><br>
 
     <h1 style="font-size: 45px; margin: 20px">Products</h1>
     <section class="store">
-        <?php require('php/products.php'); ?>
+        <?php require('../php/products.php'); ?>
     </section>
 
     <footer class="footer">

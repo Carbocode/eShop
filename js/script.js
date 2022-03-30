@@ -18,7 +18,7 @@ function logout(e) {
         },
         success: function(res) {
             alert("You have been disconnected");
-            window.location.href = "http://localhost/index.php";
+            window.location.href = "http://localhost/index.html";
         },
     });
 }

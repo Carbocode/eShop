@@ -25,9 +25,9 @@ h4,
 h5,
 h6,
 p {
+  color: var(--text-color);
   margin-top: 0;
   padding-top: 0;
-  color: var(--text-color);
 }
 
 ul {
@@ -40,6 +40,7 @@ ul {
   --primary-color: rgb(0, 0, 0);
   --secondary-color: #292929;
   --text-color: rgb(255, 255, 255);
+  --text-alert-color: rgb(255, 0, 0);
   --accent-color: rgb(216, 75, 255);
   --navbar: 40px;
 }

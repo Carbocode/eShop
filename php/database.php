@@ -33,7 +33,10 @@ try{
             $pdo->query($table);
         }
         $sqlInsert = "INSERT INTO account(username, nome, surname, email, pass, tipo) value('admin', 'admin', 'admin', 'admin', 'admin', 'admin')";
+        $sqlInsert = "INSERT INTO account(username, nome, surname, email, pass, tipo) value('admin2', 'admin2', 'admin2', 'admin2', 'admin2', 'admin2')";
         $pdo->query($sqlInsert);
+    }else{
+        //$pdo->query("DROP DATABASE $dbName");
     }
 }
 catch (PDOExepction $err){
