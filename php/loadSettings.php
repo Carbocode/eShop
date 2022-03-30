@@ -16,10 +16,10 @@ if(isset($_POST["Logout"])){
 
 if(isset($_SESSION["nome"])){
     $nome=$_SESSION["nome"]; 
-    $stmt=$pdo->query("SELECT * FROM account WHERE username='$nome'"); 
+    $stmt=$pdo->query("SELECT tipo FROM account WHERE username='$nome'"); 
     if($stmt->rowCount() > 0){
-        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $row){
-            if($row['tipo']=='admin'){ 
+        foreach($stmt->fetchAll(PDO::FETCH_COLUMN) as $row){
+            if($row=='admin'){ 
                 echo "<li class='navbar-hover'><a href='../pages/addProduct.html'>Sell</a></li>"."<li class='navbar-hover'><a href='../pages/table.html'>Users</a></li>"; 
             } 
         } 
