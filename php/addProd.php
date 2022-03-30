@@ -4,7 +4,7 @@ $dbName = "DefaultCube";
 $currentDir = "../";
 $verifica= $pdo->query("use $dbName");
 
-if(isset($_POST["name"])) {
+if(isset($_POST["name "])) {
     $target_dir = "userImg/products/";
     $target_file = $target_dir.basename($_FILES["image"]["name"]);
     $uploadOk = 1;
