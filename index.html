@@ -39,80 +39,21 @@
       </div>
     </header>
 
-    <script src="js/three.js"></script>
-    <script src="js/GLTFLoader.js"></script>
-    <script>
-      let scene, camera, renderer;
-
-      function init() {
-        scene = new THREE.Scene();
-        backgroundColor = $("body").css("background-color");
-        scene.background = new THREE.Color(backgroundColor);
-
-        camera = new THREE.PerspectiveCamera(
-          50,
-          window.innerWidth / window.innerHeight,
-          1,
-          5000
-        );
-        camera.rotation.y = (45 / 180) * Math.PI;
-        camera.position.x = 800;
-        camera.position.y = 100;
-        camera.position.z = 1000;
-
-        directionalLight = new THREE.DirectionalLight(0xc4c4c4, 50);
-        directionalLight.position.set(0, 1, 0);
-        directionalLight.castShadow = true;
-        scene.add(directionalLight);
-
-        hlight = new THREE.AmbientLight(0x404040, 100);
-        scene.add(hlight);
-
-        light = new THREE.PointLight(0xc4c4c4, 10);
-        light.position.set(0, 300, 500);
-        scene.add(light);
-
-        light2 = new THREE.PointLight(0xc4c4c4, 10);
-        light2.position.set(500, 100, 0);
-        scene.add(light2);
-
-        light3 = new THREE.PointLight(0xc4c4c4, 10);
-        light3.position.set(0, 100, -500);
-        scene.add(light3);
-
-        light4 = new THREE.PointLight(0xc4c4c4, 10);
-        light4.position.set(-500, 300, 500);
-        scene.add(light4);
-
-        renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        let loader = new THREE.GLTFLoader();
-        loader.load("3Dmodel/scene.gltf", function (gltf) {
-          car = gltf.scene.children[0];
-          car.scale.set(0.4, 0.4, 0.4);
-          scene.add(gltf.scene);
-          animate();
-        });
-      }
-
-      window.addEventListener("resize", onWindowResize, false);
-
-      function onWindowResize() {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-        animate();
-      }
-
-      function animate() {
-        renderer.render(scene, camera);
-      }
-
-      init();
-    </script>
+    <section>
+      <h1 style="position: absolute; top: 100px; left: 200px">
+        Halo sexy banana
+      </h1>
+      <div>
+        <script src="js/engine/three.js"></script>
+        <script src="js/engine/GLTFLoader.js"></script>
+        <script src="js/engine/OrbitControls.js"></script>
+        <script src="js/renderer.js"></script>
+        <script>
+          init(
+            "3Dmodel/Orbiter_Space_Shuttle_OV-103_Discovery-150k-4096-gltf/Orbiter_Space_Shuttle_OV-103_Discovery-150k-4096.gltf"
+          );
+        </script>
+      </div>
+    </section>
   </body>
 </html>
