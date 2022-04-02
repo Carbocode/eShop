@@ -20,7 +20,7 @@ if(isset($_SESSION["nome"])){
     if($stmt->rowCount() > 0){
         foreach($stmt->fetchAll(PDO::FETCH_COLUMN) as $row){
             if($row=='admin'){ 
-                echo "<li class='navbar-hover'><a href='../pages/addProduct.html'>Sell</a></li>"."<li class='navbar-hover'><a href='../pages/table.html'>Users</a></li>"; 
+                echo "<li class='navbar-hover'><a href='http://localhost/pages/addProduct.html'>Sell</a></li>"."<li class='navbar-hover'><a href='http://localhost/pages/table.html'>Users</a></li>"; 
             } 
         } 
         $date = date("d/m/Y H:i:s"); 

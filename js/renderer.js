@@ -1,6 +1,6 @@
 let scene, camera, renderer, controls;
 
-      function init(model) {
+      function init(model, zoom, pan, rotate) {
         renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
@@ -15,11 +15,14 @@ let scene, camera, renderer, controls;
           1,
           5000
         );
-        camera.position.x = 800;
+        camera.position.x = 950;
         camera.position.y = 1100;
         camera.position.z = -1000;
 
         controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableZoom = zoom;
+        controls.enablePan = pan;
+        controls.enableRotation = rotate;
 
         directionalLight = new THREE.DirectionalLight(0xc4c4c4, 0.5);
         directionalLight.position.set(0, 1, 0);
@@ -48,7 +51,7 @@ let scene, camera, renderer, controls;
         let loader = new THREE.GLTFLoader();
         loader.load(model, function (gltf) {
           asset = gltf.scene.children[0];
-          asset.scale.set(30, 30, 30);
+          asset.scale.set(350, 350, 350);
           scene.add(gltf.scene);
           animate();
         });
@@ -67,6 +70,9 @@ let scene, camera, renderer, controls;
 
       function animate() {
         requestAnimationFrame(animate);
+
+        asset.rotation.y -= 0.001;
+
         renderer.render(scene, camera);
         controls.update();
       }

@@ -14,11 +14,13 @@
       <div class="navbar">
         <div class="account">
           <div class="account-dropdown">
-            <ul id="#settings"></ul>
+            <ul id="#settings">
+              <li></li>
+            </ul>
           </div>
         </div>
         <div class="sections">
-          <a href="http://localhost/index.php">DefaultCube</a>
+          <a href="http://localhost/index.html">DefaultCube</a>
           <input id="burgermenu" type="checkbox" />
           <div class="burger">
             <div class="bar1"></div>
@@ -26,8 +28,8 @@
             <div class="bar3"></div>
           </div>
           <ul class="dropdown">
-            <li><a href="">Shop</a></li>
-            <li><a href="">Commission</a></li>
+            <li><a href="http://localhost/pages/shop.php">Products</a></li>
+            <li><a href="">Become a Cuber</a></li>
             <li><a href="">News</a></li>
           </ul>
         </div>
@@ -52,7 +54,7 @@
             <div class="app-title">SELL</div>
           </div>
           <div class="screen-body-item">
-            <form class="app-form" enctype="multipart/form-data">
+            <form class="app-form" method="post" enctype="multipart/form-data">
               <div class="app-form-group message">
                 <input
                   type="file"
@@ -98,14 +100,15 @@
     <script>
       function addProd(e) {
         e.preventDefault();
+
         file = $("#image")[0].files;
         formData = new FormData();
-        formData.append("file", file);
+        formData.append("file", file[0]);
         $.ajax({
           type: "POST",
           url: "http://localhost/php/addProd.php",
           data: {
-            image: formData,
+            file: formData,
             name: $("#name").val(),
             price: $("#price").val(),
           },

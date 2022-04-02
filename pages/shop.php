@@ -17,11 +17,12 @@
             <div class="account">
                 <div class="account-dropdown">
                     <ul id="#settings">
+                        <li></li>
                     </ul>
                 </div>
             </div>
             <div class="sections">
-                <a href="http://localhost/index.php">DefaultCube</a>
+                <a href="http://localhost/index.html">DefaultCube</a>
                 <input id="burgermenu" type="checkbox" />
                 <div class="burger">
                     <div class="bar1"></div>
@@ -29,7 +30,7 @@
                     <div class="bar3"></div>
                 </div>
                 <ul class="dropdown">
-                    <li><a href="">Products</a></li>
+                    <li><a href="http://localhost/pages/shop.php">Products</a></li>
                     <li><a href="">Become a Cuber</a></li>
                     <li><a href="">News</a></li>
                 </ul>
