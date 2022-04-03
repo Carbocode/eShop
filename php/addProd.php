@@ -6,32 +6,31 @@ $verifica= $pdo->query("use $dbName");
 
 if(isset($_POST["name"])) {
     $uploadOk = 0;
-    if(!empty($_FILE["file"])){
-        $target_dir = "userImg/products/";
-        $target_file = $target_dir.basename($_FILES["file"]["name"]);
-        $uploadOk = 1;
-
-        // Check if image file is a actual image or fake image
-        $check = getimagesize($_FILES["file"]["tmp_name"]);
-        if($check !== false) {
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
-
-        // Check file size
-        if ($_FILES["fige"]["size"] > 2000000) {
-            echo "Sorry, your file is too large.";
-            $uploadOk = 0;
-        }
     
-        // Allow certain file formats
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-            echo "Sorry, only JPG, JPEG, PNG files are allowed.";
-            $uploadOk = 0;
-        }
+    $target_dir = "userImg/products/";
+    $target_file = $target_dir.basename($_FILES["file"]["name"]);
+    $uploadOk = 1;
+
+    // Check if image file is a actual image or fake image
+    $check = getimagesize($_FILES["file"]["tmp_name"]);
+    if($check !== false) {
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+
+    // Check file size
+    if ($_FILES["file"]["size"] > 2000000) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+
+    // Allow certain file formats
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+        echo "Sorry, only JPG, JPEG, PNG files are allowed.";
+        $uploadOk = 0;
     }
     
 
@@ -60,6 +59,8 @@ if(isset($_POST["name"])) {
         echo "Sorry, there was an error uploading your file.";
         }
     }
+}else{
+    echo "bara bara bara";
 }
 
 $pdo = null;

@@ -48,10 +48,6 @@
         <?php require('../php/products.php'); ?>
     </section>
 
-    <footer class="footer">
-        <form method="POST">
-            <input type="submit" name="DeleteCookie" value="Cancella Cookie" />
-        </form>
     </footer>
 </body>
 
