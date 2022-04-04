@@ -1,8 +1,10 @@
 <?php
+$verifica= $pdo->query("use $dbName");
 $pdo = new PDO("mysql:host=localhost;","root","mysql");
 $dbName = "DefaultCube";
-$currentDir = "../";
 $verifica= $pdo->query("use $dbName");
+session_start();
+$currentDir = "../";
 
 if(isset($_POST["name"])) {
     $uploadOk = 0;
@@ -59,8 +61,6 @@ if(isset($_POST["name"])) {
         echo "Sorry, there was an error uploading your file.";
         }
     }
-}else{
-    echo "bara bara bara";
 }
 
 $pdo = null;

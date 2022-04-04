@@ -16,13 +16,23 @@ try{
             id_prod INT PRIMARY KEY,
             nome TEXT NOT NULL,
             prezzo DOUBLE NOT NULL,
-            img TEXT NOT NULL
+            img TEXT NOT NULL,
+            descr TEXT,
+            vertices INT,
+            weightMB DOUBLE,
+            rating INT
         )",
         "CREATE TABLE ordini(
             username VARCHAR(30),
             id_prod INT,
+            rating INT,
             PRIMARY KEY(username, id_prod)
-        )"
+        )",
+        "CREATE TABLE popularity(
+            id_prod INT PRIMARY KEY,
+            views INT,
+            downloads INT,
+            )",
     ];
 
     $verifica= $pdo->query("use $dbName"); //se non trova nulla il valore è False

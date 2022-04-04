@@ -1,28 +1,23 @@
 <?php
+$pdo = new PDO("mysql:host=localhost;","root","mysql");
+$dbName = "DefaultCube";
+$verifica= $pdo->query("use $dbName");
 session_start();
 
-if(isset($_POST["username"])){
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-}
-
-
-if(!empty($username) && !empty($password)){
-    $pdo = new PDO("mysql:host=localhost;","root","mysql");
-    $dbName = "DefaultCube";
-    $verifica= $pdo->query("use $dbName");
+if(!empty($_POST["username"]) && !empty($_POST["password"])){
+    $username=$_POST["username"];
+    $password=$_POST["password"];
     $stmt=$pdo->query("SELECT * FROM account WHERE username='$username' AND pass='$password'");
     if($stmt->rowCount() > 0){
         foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $row){
             $_SESSION['nome']=$username;
-            echo "benvenuto ".$_SESSION['nome'];       
+            echo "Benvenuto ".$_SESSION['nome'];       
         }
-        $date = date("d/m/Y H:i:s");
-        setcookie("ultimavisita", $date,  time() + (86400 * 30), "/");
     }
     else{
-        echo "Accesso fallito";
+        echo "Utente non esistente";
     }
-    $pdo=null;
 }
+
+$pdo=null;
 ?>

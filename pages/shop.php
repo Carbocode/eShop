@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="sections">
-                <a href="http://localhost/index.html">DefaultCube</a>
+                <a href="http://localhost">DefaultCube</a>
                 <input id="burgermenu" type="checkbox" />
                 <div class="burger">
                     <div class="bar1"></div>
@@ -30,13 +30,13 @@
                     <div class="bar3"></div>
                 </div>
                 <ul class="dropdown">
-                    <li><a href="http://localhost/pages/shop.php">Products</a></li>
+                    <li><a href="http://localhost/pages/shop">Products</a></li>
                     <li><a href="">Become a Cuber</a></li>
                     <li><a href="">News</a></li>
                 </ul>
             </div>
             <div class="cart">
-                <a class="cart-img" href="http://localhost/pages/cart.php"></a>
+                <a class="cart-img" href="http://localhost/pages/cart"></a>
             </div>
         </div>
     </header>
