@@ -22,7 +22,7 @@ let scene, camera, renderer, controls;
         controls = new THREE.OrbitControls(camera, renderer.domElement);
         controls.enableZoom = zoom;
         controls.enablePan = pan;
-        controls.enableRotation = rotate;
+        controls.enableRotate = rotate;
 
         directionalLight = new THREE.DirectionalLight(0xc4c4c4, 0.5);
         directionalLight.position.set(0, 1, 0);
