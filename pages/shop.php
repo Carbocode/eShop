@@ -43,12 +43,31 @@
 
     <br><br><br><br><br>
 
+    <section>
+        <div class="screen screen-fixed">
+            <div class="screen-header">
+                <div class="screen-header-left">
+                    <div class="screen-header-button close"></div>
+                    <div class="screen-header-button maximize"></div>
+                    <div class="screen-header-button minimize"></div>
+                </div>
+            </div>
+            <div class="screen-body">
+                <div class="screen-body-item left" style="background-image: url(../userImg/products/0age.jpg);">
+
+                </div>
+                <div class="screen-body-item">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
     <h1 style="font-size: 45px; margin: 20px">Products</h1>
     <section class="store">
         <?php require('../php/products.php'); ?>
     </section>
 
-    </footer>
 </body>
 
 </html>

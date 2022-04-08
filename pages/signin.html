@@ -96,18 +96,27 @@
     </section>
 
     <script>
+      const account = {};
+      account.setJWT = function (data) {
+        this.JWT = data;
+      };
+
       function login(e) {
         e.preventDefault();
         $.ajax({
           type: "POST",
-          url: "http://localhost/php/login.php",
-          data: {
+          contentType: "application/json; charset=utf-8",
+          url: "http://localhost/api/login.php",
+          data: JSON.stringify({
             username: $("#username").val(),
             password: $("#password").val(),
-          },
+          }),
+          dataType: "JSON",
+          encode: true,
           success: function (res) {
-            alert(res);
-            window.location.href = "http://localhost";
+            //window.location.href = "http://localhost";
+            alert(res.message);
+            account.setJWT(res.jwt);
           },
         });
       }

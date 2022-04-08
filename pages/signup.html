@@ -124,16 +124,22 @@
     <script>
       function register(e) {
         e.preventDefault();
+
+        formData = {};
+
         $.ajax({
           type: "POST",
-          url: "http://localhost/php/register.php",
-          data: {
+          contentType: "application/json; charset=utf-8",
+          url: "http://localhost/api/register.php",
+          data: JSON.stringify({
             name: $("#name").val(),
             surname: $("#surname").val(),
             username: $("#username").val(),
             email: $("#email").val(),
             password: $("#password").val(),
-          },
+          }),
+          dataType: "JSON",
+          encode: true,
           success: function (res) {
             alert(res);
             window.location.href = "http://localhost";
