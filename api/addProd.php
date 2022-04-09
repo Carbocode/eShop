@@ -1,8 +1,17 @@
 <?php
-$pdo = new PDO("mysql:host=localhost;", "root", "mysql");
-$dbName = "DefaultCube";
-$verifica = $pdo->query("use $dbName");
-session_start();
+include_once './config/database.php';
+
+header("Access-Control-Allow-Origin: * ");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+$databaseService = new DatabaseService();
+$pdo = $databaseService->getConnection();
+
+$data = json_decode(file_get_contents("php://input"));
+
 $currentDir = "../";
 $target_dir = "userImg/products/";
 

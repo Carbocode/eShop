@@ -10,6 +10,10 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+$alert = "";
+$jwt = "";
+$expire = 0;
+
 $data = json_decode(file_get_contents("php://input"));
 
 $databaseService = new DatabaseService();
@@ -56,26 +60,24 @@ if (!empty($username) && !empty($password)) {
                 )
             );
 
-            http_response_code(200);
-
             $jwt = JWT::encode($token, $secret_key, "HS256");
-            echo json_encode(
-                array(
-                    "message" => "Successful login.",
-                    "jwt" => $jwt,
-                    "expireAt" => $expire
-                )
-            );
+            $alert = $alert . "Successful login.";
         } else {
-
-            http_response_code(401);
-            echo json_encode(array("message" => "Password errata"));
+            $alert = $alert . "Password errata";
         }
     } else {
-        echo "Utente non esistente";
+        $alert = $alert .  "Utente non esistente";
     }
 } else {
-    echo "riempire tutti i campi";
+    $alert = $alert .  "riempire tutti i campi";
 }
+
+echo json_encode(
+    array(
+        "alert" => $alert,
+        "jwt" => $jwt,
+        "expireAt" => $expire
+    )
+);
 
 $pdo = null;

@@ -115,7 +115,7 @@
           encode: true,
           success: function (res) {
             //window.location.href = "http://localhost";
-            alert(res.message);
+            if (res.alert != "") alert(res.alert);
             account.setJWT(res.jwt);
           },
         });

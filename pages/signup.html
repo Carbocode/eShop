@@ -125,8 +125,6 @@
       function register(e) {
         e.preventDefault();
 
-        formData = {};
-
         $.ajax({
           type: "POST",
           contentType: "application/json; charset=utf-8",
@@ -141,8 +139,8 @@
           dataType: "JSON",
           encode: true,
           success: function (res) {
-            alert(res);
-            window.location.href = "http://localhost";
+            if (res.alert != "") alert(res.alert);
+            //window.location.href = "http://localhost";
           },
         });
       }

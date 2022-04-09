@@ -43,43 +43,26 @@
     <table class="sortable" id="table"></table>
 
     <script>
-      $(document).ready(loadTable());
+      $(document).ready(crud("read"));
 
-      function loadTable() {
-        $.ajax({
-          type: "POST",
-          url: "http://localhost/php/table.php",
-          data: {
-            table: new Boolean(true),
-          },
-          success: function (res) {
-            document.getElementById("table").innerHTML = res;
-          },
+      function crud(action, user) {
+        if (user === undefined) user = "0";
+
+        jData = JSON.stringify({
+          what: action,
+          account: user,
         });
-      }
 
-      function erease(e, usr) {
-        e.preventDefault();
         $.ajax({
           type: "POST",
-          url: "http://localhost/php/table.php",
-          data: { usernameD: usr },
+          contentType: "application/json; charset=utf-8",
+          url: "http://localhost/api/table.php",
+          data: jData,
+          dataType: "JSON",
+          encode: true,
           success: function (res) {
-            alert(res);
-            loadTable();
-          },
-        });
-      }
-
-      function upgrade(e, usr) {
-        e.preventDefault();
-        $.ajax({
-          type: "POST",
-          url: "http://localhost/php/table.php",
-          data: { usernameU: usr },
-          success: function (res) {
-            alert(res);
-            loadTable();
+            if (res.alert != "") alert(res.alert);
+            document.getElementById("table").innerHTML = res.message;
           },
         });
       }
