@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="sections">
-          <a href="http://localhost">DefaultCube</a>
+          <a href="/">DefaultCube</a>
           <input id="burgermenu" type="checkbox" />
           <div class="burger">
             <div class="bar1"></div>
@@ -28,13 +28,13 @@
             <div class="bar3"></div>
           </div>
           <ul class="dropdown">
-            <li><a href="http://localhost/pages/shop">Products</a></li>
+            <li><a href="/pages/shop">Products</a></li>
             <li><a href="">Become a Cuber</a></li>
             <li><a href="">News</a></li>
           </ul>
         </div>
         <div class="cart">
-          <a class="cart-img" href="http://localhost/pages/cart"></a>
+          <a class="cart-img" href="/pages/cart"></a>
         </div>
       </div>
     </header>
@@ -96,11 +96,6 @@
     </section>
 
     <script>
-      const account = {};
-      account.setJWT = function (data) {
-        this.JWT = data;
-      };
-
       function login(e) {
         e.preventDefault();
         $.ajax({
@@ -116,7 +111,7 @@
           success: function (res) {
             //window.location.href = "http://localhost";
             if (res.alert != "") alert(res.alert);
-            account.setJWT(res.jwt);
+            localStorage.setItem("token", res.jwt);
           },
         });
       }

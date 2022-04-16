@@ -1,6 +1,6 @@
 <?php
-include_once './config/database.php';
-require "../vendor/autoload.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . '/api/config/database.php';
+require $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
 
 use \Firebase\JWT\JWT;
 
@@ -40,7 +40,7 @@ if (!empty($username) && !empty($password)) {
         $tipo = $row["tipo"];
 
         if ($password == $password2) {
-            $secret_key = "KenIPutMyBallzInYourJaw";
+            $secret_key = "s22wyX!!iYT@rQ#WT#5wbSb95R@^WD$3BJZdy8imxB4GRk3NYFP3H7YQbtnX*Mktb^72CTrq!JxQUqYG%3GJor8XFVyuaczMCb7nA2M&hh7zpb76%te!Xzs9@RrEDE^4";
 
             $serverName = "defaultcube.com"; // this can be the servername
             $issuedAt = time(); // issued at
@@ -51,13 +51,11 @@ if (!empty($username) && !empty($password)) {
                 "iat" => $issuedAt,
                 "nbf" => $notBefore,
                 "exp" => $expire,
-                "data" => array(
-                    "username" => $username,
-                    "name" => $name,
-                    "surname" => $surname,
-                    "email" => $email,
-                    "tipo" => $tipo
-                )
+                "username" => $username,
+                "name" => $name,
+                "surname" => $surname,
+                "email" => $email,
+                "tipo" => $tipo
             );
 
             $jwt = JWT::encode($token, $secret_key, "HS256");

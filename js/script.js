@@ -1,12 +1,11 @@
-$(document).ready(loadSettings(0));
-$("#logout").click(logout());
+loadSettings()
 
-function loadSettings(jwt) {
+function loadSettings() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
         url: "http://localhost/api/loadSettings.php",
-        data: JSON.stringify({jwt:jwt}),
+        headers: {"Authorization": localStorage.getItem('token')},
         dataType: "JSON",
         encode: true,
         success: function(res) {
@@ -17,7 +16,8 @@ function loadSettings(jwt) {
     });
 }
 
-function logout(e) {
+function logout() {
+    localStorage.clear();
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",

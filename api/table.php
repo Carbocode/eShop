@@ -1,5 +1,8 @@
 <?php
-include_once './config/database.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/api/config/database.php';
+require $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
+
+use \Firebase\JWT\JWT;
 
 header("Access-Control-Allow-Origin: * ");
 header("Content-Type: application/json; charset=UTF-8");
