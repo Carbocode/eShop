@@ -4,8 +4,8 @@ class DatabaseService
 {
     private $db_host = "localhost";
     private $db_name = "DefaultCube";
-    private $db_user = "root";
-    private $db_password = "mysql";
+    private $db_user = "prisco";
+    private $db_password = '@7jB*W3c7$E3c&';
     private $connection;
 
     public function getConnection()

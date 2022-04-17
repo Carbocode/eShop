@@ -1,4 +1,4 @@
-loadSettings()
+$( document ).ready(loadSettings());
 
 function loadSettings() {
     $.ajax({
