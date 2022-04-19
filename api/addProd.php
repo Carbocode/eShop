@@ -7,6 +7,9 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+$settings = "";
+$alert = "";
+
 $databaseService = new DatabaseService();
 $pdo = $databaseService->getConnection();
 
@@ -15,19 +18,16 @@ $data = json_decode(file_get_contents("php://input"));
 $currentDir = "../";
 $target_dir = "userImg/products/";
 
-if (trim(isset($_POST["name"]))) {
+if (trim(isset($data->name))) {
     $name = $_POST["name"];
-    echo $name;
 }
 
-if (trim(isset($_POST["price"]))) {
+if (trim(isset($data->price))) {
     $price = trim($_POST["price"]);
-    echo $price;
 }
 
-if (trim(isset($_POST["description"]))) {
+if (trim(isset($data->description))) {
     $description = $_POST["description"];
-    echo $description;
 }
 
 $uploadOk = TRUE;
@@ -39,25 +39,32 @@ if (isset($_FILES["file"]["tmp_name"])) {
     $check = getimagesize($_FILES["file"]["tmp_name"]);
     if ($check !== false) {
     } else {
-        echo "File is not an image.";
+        $alert = $alert . "File is not an image.";
         $uploadOk = FALSE;
     }
 
     // Check file size
     if ($_FILES["file"]["size"] > 2000000) {
-        echo "Sorry, your file is too large.";
+        $alert = $alert . "Sorry, your file is too large.";
         $uploadOk = FALSE;
     }
 
     // Allow certain file formats
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-        echo "Sorry, only JPG, JPEG, PNG files are allowed.";
+        $alert = $alert . "Sorry, only JPG, JPEG, PNG files are allowed.";
         $uploadOk = FALSE;
+    }
+    if ($uploadOk) {
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], $currentDir . $target_file)) {
+            $target_file = $target_dir . $idProd . basename($_FILES["file"]["name"]);
+        } else {
+            $alert = $alert . "Sorry, there was an error uploading your file, you can always do it later";
+        }
     }
 }
 
-if (!empty($name) && !empty($price) && !empty($description) && $uploadOk) {
+if (!empty($name) && !empty($price) && !empty($description)) {
     $idProd = 0;
 
     $stmt = $pdo->query("SELECT * FROM products order by id_prod desc limit 1");
@@ -67,16 +74,13 @@ if (!empty($name) && !empty($price) && !empty($description) && $uploadOk) {
         }
     }
 
-    $target_file = $target_dir . $idProd . basename($_FILES["file"]["name"]);
-    $query = "INSERT INTO products(id_prod, nome, prezzo, img, descr) value($idProd, '$name', $price, '$target_file', '$description')";
+    $query = "INSERT INTO products(id_prod, nome, prezzo, img, descr) value($idProd, '$name', $price, '', '$description')";
     $pdo->query($query);
-
-    if (move_uploaded_file($_FILES["file"]["tmp_name"], $currentDir . $target_file)) {
-    } else {
-        echo "Sorry, there was an error uploading your file, you can always do it later";
-    }
 } else {
-    echo "riempire prima tutti i campi";
+    $alert = $alert . "riempire prima tutti i campi";
 }
 
+echo json_encode(
+    array("settings" => $settings, "alert" => $alert)
+);
 $pdo = null;

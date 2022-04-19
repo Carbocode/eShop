@@ -109,17 +109,26 @@
       function addProd(e) {
         e.preventDefault();
 
+        $.ajax({
+          type: "POST",
+          contentType: "application/json; charset=utf-8",
+          url: "http://localhost/api/addProd.php",
+          data: JSON.stringify({
+            name: $("#name").val(),
+            price: $("#price").val(),
+            description: $("#description").val(),
+          }),
+          dataType: "JSON",
+          encode: true,
+          success: function (res) {
+            if (res.alert != "") alert(res.alert);
+          },
+        });
+
         formData = new FormData();
 
         file = $("#image")[0].files;
-        name = $("#name").val();
-        price = $("#price").val();
-        description = $("#description").val();
-
         formData.append("file", file[0]);
-        formData.append("name", name);
-        formData.append("description", description);
-        formData.append("price", price);
         $.ajax({
           type: "POST",
           url: "http://localhost/api/addProd.php",
