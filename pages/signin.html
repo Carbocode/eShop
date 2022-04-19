@@ -109,9 +109,9 @@
           dataType: "JSON",
           encode: true,
           success: function (res) {
-            //window.location.href = "http://localhost";
+            sessionStorage.setItem("token", "Bearer " + res.jwt);
             if (res.alert != "") alert(res.alert);
-            localStorage.setItem("token", res.jwt);
+            window.location.href = "/";
           },
         });
       }

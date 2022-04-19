@@ -4,39 +4,59 @@ require $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
+JWT::$leeway = 20;
+
 class Authentication
 {
-    private $secret_key = "s22wyX!!iYT@rQ#WT#5wbSb95R@^WD$3BJZdy8imxB4GRk3NYFP3H7YQbtnX*Mktb^72CTrq!JxQUqYG%3GJor8XFVyuaczMCb7nA2M&hh7zpb76%te!Xzs9@RrEDE^4";
+    private $secret_key = "VkYp3s6v9y/B?E(H+MbQeThWmZq4t7w!";
     public $userInfo = null;
 
-    function __construct($token)
+    public function __construct($token, $cookie)
     {
         try {
-            $this->userInfo = JWT::decode($token, new Key($this->secret_key, 'HS256'));
+            $arr = explode(" ", $token);
+            $temp = JWT::decode($arr[1], new Key($this->secret_key, 'HS256'));
+
+            if ($this->isAuth($temp->ident, $cookie)) {
+                $this->userInfo = $temp;
+            }
         } catch (\Exception $e) {
         }
     }
-    public function lmao()
-    {
-        return $this->userInfo;
-    }
 
-    //verifica se l'utente è loggato
-    public function isLogged(): bool
+    private function isAuth($token, $cookie)
     {
-        if (isset($this->userInfo->name)) {
+        if ($token == md5($cookie)) {
             return True;
         } else {
             return False;
         }
     }
 
-    //verifica se l'utente è admin
-    public function isAdmin(string $token): bool
+    //verifica se l'utente è loggato
+    public function isLogged(): bool
     {
-        if ($this->userInfo->tipo == "admin") {
-            return True;
-        } else {
+        try {
+            if (isset($this->userInfo->name)) {
+                return True;
+            } else {
+                return False;
+            }
+        } catch (\Exception $e) {
+            return False;
+        }
+    }
+
+    //verifica se l'utente è admin
+    public function isAdmin(): bool
+    {
+        try {
+            if ($this->userInfo->tipo == "admin") {
+                return True;
+            } else {
+                return False;
+            }
+        } catch (\Exception $e) {
             return False;
         }
     }

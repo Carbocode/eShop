@@ -4,6 +4,18 @@ require $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
 
 use \Firebase\JWT\JWT;
 
+function generateRandomString($length = 10)
+{
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
@@ -40,12 +52,22 @@ if (!empty($username) && !empty($password)) {
         $tipo = $row["tipo"];
 
         if ($password == $password2) {
-            $secret_key = "s22wyX!!iYT@rQ#WT#5wbSb95R@^WD$3BJZdy8imxB4GRk3NYFP3H7YQbtnX*Mktb^72CTrq!JxQUqYG%3GJor8XFVyuaczMCb7nA2M&hh7zpb76%te!Xzs9@RrEDE^4";
+            $secret_key = "VkYp3s6v9y/B?E(H+MbQeThWmZq4t7w!";
+
+            $randomString = generateRandomString(20);
+            setcookie("ident", $randomString, [
+                'expires' => time() + 86400,
+                'path' => '/',
+                'domain' => 'localhost',
+                'secure' => true,
+                'httponly' => true,
+                'samesite' => 'Strict',
+            ]);
 
             $serverName = "defaultcube.com"; // this can be the servername
             $issuedAt = time(); // issued at
             $notBefore = $issuedAt + 10; //not before in seconds
-            $expire = $issuedAt + 60; // expire time in seconds
+            $expire = $issuedAt + 86400; // expire time in seconds
             $token = array(
                 "iss" => $serverName,
                 "iat" => $issuedAt,
@@ -55,7 +77,8 @@ if (!empty($username) && !empty($password)) {
                 "name" => $name,
                 "surname" => $surname,
                 "email" => $email,
-                "tipo" => $tipo
+                "tipo" => $tipo,
+                "ident" => md5($randomString)
             );
 
             $jwt = JWT::encode($token, $secret_key, "HS256");

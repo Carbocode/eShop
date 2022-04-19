@@ -13,10 +13,6 @@ $settings = "";
 $alert = "";
 
 $headers = apache_request_headers();
-$token = $headers["Authorization"];
-
-if (!empty($token) && $token != null)
-    $auth = new Authentication($token);
 
 $databaseService = new DatabaseService();
 $pdo = $databaseService->getConnection();
@@ -27,26 +23,32 @@ if (isset($data->logout)) {
     $alert = $alert . "successfully logged out";
 }
 
-if ($auth->isLogged($token)) {
-    $settings = $settings .
-        "<li class='navbar-hover'><a>Profile</a></li>" .
-        "<li class='navbar-hover'><a>Orders</a></li>" .
-        "<li class='navbar-hover'><a>Settings</a></li>" .
-        "<br><li class='navbar-hover' onClick='logout(event)'><a id='logout'>Log-Out</a></li><br>";
+if ($headers["Authorization"] !== "null") {
+    $token = $headers["Authorization"];
+    $auth = new Authentication($token, $_COOKIE["ident"]);
+    if ($auth->isLogged()) {
+        $settings = $settings .
+            "<li class='navbar-hover'><a>Profile</a></li>" .
+            "<li class='navbar-hover'><a>Orders</a></li>" .
+            "<li class='navbar-hover'><a>Settings</a></li>" .
+            "<br><li class='navbar-hover' onClick='logout(event)'><a id='logout'>Log-Out</a></li><br>";
 
-    if ($auth->isAdmin($token)) {
-        /*$stmt = $pdo->query("SELECT tipo FROM account WHERE username='$nome'");
+        if ($auth->isAdmin()) {
+            /*$stmt = $pdo->query("SELECT tipo FROM account WHERE username='$nome'");
         if ($stmt->rowCount() > 0) {
             foreach ($stmt->fetchAll(PDO::FETCH_COLUMN) as $row) {
                 if ($row == 'admin') {*/
-        $settings = $settings .
-            "<li class='navbar-hover'><a href='/pages/addProduct'>Sell</a></li>" .
-            "<li class='navbar-hover'><a href='/pages/table'>Users</a></li>";
-        /*}
+            $settings = $settings .
+                "<li class='navbar-hover'><a href='/pages/addProduct'>Sell</a></li>" .
+                "<li class='navbar-hover'><a href='/pages/table'>Users</a></li>";
+            /*}
             }
         }*/
+        }
     }
-} else {
+}
+
+if (empty($settings)) {
     $settings = $settings .
         "<li class='navbar-hover'><a href='/pages/signin'>Log-In</a></li>" .
         "<li class='navbar-hover'><a href='/pages/signup'>Register</a></li>";
