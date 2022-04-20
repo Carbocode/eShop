@@ -122,21 +122,24 @@
           encode: true,
           success: function (res) {
             if (res.alert != "") alert(res.alert);
-          },
-        });
 
-        formData = new FormData();
+            formData = new FormData();
 
-        file = $("#image")[0].files;
-        formData.append("file", file[0]);
-        $.ajax({
-          type: "POST",
-          url: "http://localhost/api/addProd.php",
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function (res) {
-            alert(res);
+            file = $("#image")[0].files;
+            id = res.id;
+
+            formData.append("file", file[0]);
+            formData.append("id", id);
+            $.ajax({
+              type: "POST",
+              url: "http://localhost/api/addImage.php",
+              data: formData,
+              processData: false,
+              contentType: false,
+              success: function (res) {
+                if (res.alert != "") alert(res.alert);
+              },
+            });
           },
         });
       }

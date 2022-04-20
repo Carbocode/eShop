@@ -19,49 +19,15 @@ $currentDir = "../";
 $target_dir = "userImg/products/";
 
 if (trim(isset($data->name))) {
-    $name = $_POST["name"];
+    $name = $data->name;
 }
 
 if (trim(isset($data->price))) {
-    $price = trim($_POST["price"]);
+    $price = trim($data->price);
 }
 
 if (trim(isset($data->description))) {
-    $description = $_POST["description"];
-}
-
-$uploadOk = TRUE;
-if (isset($_FILES["file"]["tmp_name"])) {
-
-    $target_file = $target_dir . basename($_FILES["file"]["name"]);
-
-    // Check if image file is a actual image or fake image
-    $check = getimagesize($_FILES["file"]["tmp_name"]);
-    if ($check !== false) {
-    } else {
-        $alert = $alert . "File is not an image.";
-        $uploadOk = FALSE;
-    }
-
-    // Check file size
-    if ($_FILES["file"]["size"] > 2000000) {
-        $alert = $alert . "Sorry, your file is too large.";
-        $uploadOk = FALSE;
-    }
-
-    // Allow certain file formats
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-        $alert = $alert . "Sorry, only JPG, JPEG, PNG files are allowed.";
-        $uploadOk = FALSE;
-    }
-    if ($uploadOk) {
-        if (move_uploaded_file($_FILES["file"]["tmp_name"], $currentDir . $target_file)) {
-            $target_file = $target_dir . $idProd . basename($_FILES["file"]["name"]);
-        } else {
-            $alert = $alert . "Sorry, there was an error uploading your file, you can always do it later";
-        }
-    }
+    $description = $data->description;
 }
 
 if (!empty($name) && !empty($price) && !empty($description)) {
@@ -81,6 +47,6 @@ if (!empty($name) && !empty($price) && !empty($description)) {
 }
 
 echo json_encode(
-    array("settings" => $settings, "alert" => $alert)
+    array("settings" => $settings, "alert" => $alert, "id" => $idProd)
 );
 $pdo = null;
