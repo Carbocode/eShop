@@ -2,57 +2,58 @@
 .screen-fixed{
     cursor: pointer;
     position: fixed;
-top: 0;
-left: 0;
-z-index: 12;
-width: 100%;
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
-opacity: 1;
-background: rgba(0,0,0,.7);
-overflow: auto;
-transform: translateZ(0);
-transition: opacity .2s;
-perspective: 1000px;
-perspective-origin: 50% 50%;
+    top: 0;
+    left: 0;
+    z-index: 12;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    background: rgba(0,0,0,.7);
+    overflow: auto;
+    transform: translateZ(0);
+    transition: opacity .2s;
+    perspective: 1000px;
+    perspective-origin: 50% 50%;
 }
 
 .screen {
     cursor: default;
+    padding: 5px;
     margin: auto;
     min-width: 90%;
     height: 75%;
-  position: relative;
-  background-color: white;
-  border-radius: 15px;
-  max-width: 1000px;
-  box-shadow: 0px 10px 40px -7px #0000008f, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+    max-width: 1000px;
+    box-shadow: 0px 10px 40px -7px #0000008f, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
 .screen-header {
   display: flex;
   float: right;
   align-items: center;
-  padding: 10px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  width: 100%;
 }
 
 .screen-header-button {
     cursor: pointer;
     text-align: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
   background: #ed1c6f;
 }
 
 .screen-body {
+    width: 100%;
+    height: 100%;
   display: flex;
-  padding-top: 5px;
-  padding-bottom: 5px;
 }
 
 .screen-body-item {
@@ -79,9 +80,18 @@ perspective-origin: 50% 50%;
     border-radius: 15px;
   }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 1000px) {
+    .screen {
+        
+        min-width: 100%;
+        height: 100%;
+    }
+
     .screen-body {
       flex-direction: column;
+    }
+    .screen-header {
+        display: block;
     }
   
     .screen-body-item.left {

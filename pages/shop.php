@@ -54,7 +54,7 @@
             `<div class="screen-fixed">
             <div class="screen">
                 <div class="screen-header">
-                    <div class="screen-header-button">x</div>
+                    <div onclick="closeScreen()" class="screen-header-button">x</div>
                 </div>
                 <div class="screen-body">
                     <div class="screen-body-item left" style="color:black;">
@@ -85,6 +85,10 @@
             setCookie("cart", cart, 365);
         }
 
+    }
+
+    function closeScreen() {
+        $(".screen-fixed").remove()
     }
     </script>
 
