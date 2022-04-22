@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/script.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="navbar">
+        <div class="account">
+          <div class="account-dropdown">
+            <ul id="#settings">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+        <div class="sections">
+          <a href="/">DefaultCube</a>
+          <input id="burgermenu" type="checkbox" />
+          <div class="burger">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+          </div>
+          <ul class="dropdown">
+            <li><a href="/pages/shop">Products</a></li>
+            <li><a href="">Become a Cuber</a></li>
+            <li><a href="">News</a></li>
+          </ul>
+        </div>
+        <div class="cart">
+          <a class="cart-img" href="/pages/cart"></a>
+        </div>
+      </div>
+    </header>
+    <br />
+
+    <div class="carrello" style="margin: 50px 20px"></div>
+
+    <script>
+      $(document).ready(function () {
+        cookie = getCookie("cart");
+        if (cookie != "") {
+          obj = JSON.parse(cookie);
+          obj.products.forEach((element) =>
+            $(".carrello").append(element + "<br>")
+          );
+        }
+      });
+    </script>
+  </body>
+</html>

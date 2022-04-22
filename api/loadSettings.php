@@ -40,7 +40,7 @@ if ($headers["Authorization"] !== "null") {
                 if ($row == 'admin') {*/
             $settings = $settings .
                 "<li class='navbar-hover'><a href='/pages/addProduct'>Sell</a></li>" .
-                "<li class='navbar-hover'><a href='/pages/table'>Users</a></li>";
+                "<li class='navbar-hover'><a href='/pages/table'>Control Panel</a></li>";
             /*}
             }
         }*/

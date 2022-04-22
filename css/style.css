@@ -1,6 +1,6 @@
 @import url(navbarstyle.css);
 @import url(header-imagestyle.css);
-@import url(contactstyle.css);
+@import url(product-fullscreen.css);
 @import url(signup.css);
 
 body {
@@ -11,6 +11,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   letter-spacing: 1.4px;
+  color: var(--text-color)
 }
 
 a {
@@ -41,7 +42,7 @@ ul {
   --secondary-color: #292929;
   --text-color: rgb(255, 255, 255);
   --accent-color: rgb(251, 46, 94);
-  --navbar: 40px;
+  --navbar: 30px;
 }
 
 .store {

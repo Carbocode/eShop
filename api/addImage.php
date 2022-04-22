@@ -7,6 +7,9 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+$currentDir = "../";
+$target_dir = "userImg/products/";
+
 $settings = "";
 $alert = "";
 
@@ -41,10 +44,12 @@ if (isset($_FILES["file"]["tmp_name"])) {
     if ($uploadOk) {
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $currentDir . $target_file)) {
             $target_file = $target_dir . $idProd . basename($_FILES["file"]["name"]);
-            $query = "UPDATE products SET img='$target_dir' WHERE id_prod='" . $_POST['id'] . "'";
+            $query = "UPDATE products SET img='$target_file' WHERE id_prod='" . $_POST['id'] . "'";
             $pdo->query($query);
         } else {
             $alert = $alert . "Sorry, there was an error uploading your file, you can always do it later";
+            $query = "UPDATE products SET img='userImg/products/16.jpg' WHERE id_prod='" . $_POST['id'] . "'";
+            $pdo->query($query);
         }
     }
 }

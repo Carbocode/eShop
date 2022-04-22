@@ -1,4 +1,5 @@
 .navbar {
+    background-color: var(--secondary-color);
   position: fixed;
   display: flex;
   float: inherit;
@@ -8,36 +9,26 @@
 
 .cart {
   padding: 10px;
-  margin: 10px;
-  height: var(--navbar);
-  background-color: var(--accent-color);
-  border-radius: 10px;
-  min-width: var(--navbar);
-  max-width: var(--navbar);
   cursor: pointer;
-  box-shadow: 0px 0px 2px 0px rgb(77, 77, 77);
 }
 
 .cart-img {
   display: block;
   background-image: url("../img/shopping-cart.png");
   background-size: contain;
+  filter: invert();
   min-width: var(--navbar);
   min-height: var(--navbar);
 }
 
 .sections {
-  transition: height 0.4s ease;
-  padding: 10px;
-  margin: 10px;
+  margin: 0px 6px;
   height: var(--navbar);
-  background-color: var(--secondary-color);
   color: white;
   font-size: 30px;
+  line-height:50px;
   font-weight: bolder;
-  border-radius: 10px;
   width: 100%;
-  box-shadow: 0px 0px 2px 0px rgb(77, 77, 77);
 }
 
 .dropdown {
@@ -56,8 +47,8 @@
 }
 
 .account {
-  padding: 10px;
-  margin: 10px;
+  padding: 6px;
+  margin: 4px;
   height: var(--navbar);
   background-image: url("..\\img\\propic.png");
   object-fit: cover;
@@ -71,21 +62,20 @@
 }
 
 .burger {
-  cursor: pointer;
   padding: 0px;
-  margin: 0px;
+  margin: 5px 0px;
   height: auto;
-  background-color: rgba(185, 185, 185, 0);
   display: none;
 }
 
 #burgermenu {
+    cursor: pointer;
   display: none;
   position: fixed;
   margin: 0px;
   width: 35px;
-  height: 39px;
-  right: 100px;
+  height: 50px;
+  right: 55px;
   opacity: 0;
   z-index: 1000;
 }
@@ -117,6 +107,7 @@
 
 #burgermenu:checked ~ .dropdown {
   height: auto;
+  margin-bottom: 10px;
 }
 
 #burgermenu {
@@ -132,6 +123,7 @@
 }
 
 .dropdown li {
+    line-height:normal;
   text-align: left;
   padding: 0px;
 }
@@ -140,38 +132,6 @@
   float: right;
   display: inline-block;
 }
-
-@media only screen and (max-width: 600px) {
-  #burgermenu {
-    right: 70px;
-  }
-  .navbar {
-    background-color: var(--secondary-color);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-  .sections {
-    background-color: rgba(0, 0, 0, 0);
-    box-shadow: none;
-    margin: 0px;
-    border-radius: 0;
-  }
-  .sections ul li {
-    text-align: left;
-    padding: 0;
-  }
-  .account {
-    padding: 0px;
-    box-shadow: none;
-  }
-  .cart {
-    padding: 0;
-    background-color: rgba(0, 0, 0, 0);
-    filter: invert();
-    box-shadow: none;
-  }
-}
-
 /*-------------------------------------------------------
 
 NAVBAR HOVER
@@ -185,16 +145,16 @@ NAVBAR HOVER
   min-width: 160px;
   border-radius: 10px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  top: 80px;
-  padding: 7px;
+  top: 60px;
+  padding: 10px;
   z-index: 1;
   left: -1000px;
   transition: left 1s;
-  transition-delay: 0.1s;
+  transition-delay: 0.2s;
 }
 
 .account:hover .account-dropdown {
-  left: 16px;
+  left: 7px;
   transition: left 0.2s;
 }
 

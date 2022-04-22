@@ -40,33 +40,53 @@
             </div>
         </div>
     </header>
+    <br>
 
-    <br><br><br><br><br>
-
-    <section>
-        <div class="screen screen-fixed">
-            <div class="screen-header">
-                <div class="screen-header-left">
-                    <div class="screen-header-button close"></div>
-                    <div class="screen-header-button maximize"></div>
-                    <div class="screen-header-button minimize"></div>
-                </div>
-            </div>
-            <div class="screen-body">
-                <div class="screen-body-item left" style="background-image: url(../userImg/products/0age.jpg);">
-
-                </div>
-                <div class="screen-body-item">
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <h1 style="font-size: 45px; margin: 20px">Products</h1>
+    <h1 style="font-size: 45px; margin: 100px 20px 20px 20px;">Products</h1>
     <section class="store">
-        <?php require('../php/products.php'); ?>
+        <?php require('../api/products.php');
+        ?>
     </section>
+
+    <script>
+    function fullScreen(lol) {
+        $('body').append(
+            `<div class="screen-fixed">
+            <div class="screen">
+                <div class="screen-header">
+                    <div class="screen-header-button">x</div>
+                </div>
+                <div class="screen-body">
+                    <div class="screen-body-item left" style="color:black;">
+                    Qui ci va il visualizzatore dei modelli 3D
+                    </div>
+                    <div class="screen-body-item right">
+                    ${lol.innerHTML}
+                    <div>${lol.dataset.description}</div>
+                    <a onclick="addToCart(this)">${lol.dataset.id}</a>
+                    </div>
+                </div>
+            </div>
+        </div>`);
+
+    }
+
+    function addToCart(lol) {
+        cookie = getCookie("cart");
+        if (cookie != "") {
+            obj = JSON.parse(cookie)
+            obj.products.push(lol.innerHTML)
+            cookie = JSON.stringify(obj)
+            setCookie("cart", cookie, 365);
+        } else {
+            cart = JSON.stringify({
+                "products": [lol.innerHTML]
+            })
+            setCookie("cart", cart, 365);
+        }
+
+    }
+    </script>
 
 </body>
 
