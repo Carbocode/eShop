@@ -22,6 +22,7 @@
 .screen {
     cursor: default;
     padding: 5px;
+    z-index: 13;
     margin: auto;
     min-width: 90%;
     height: 75%;
@@ -29,7 +30,6 @@
     background-color: white;
     border-radius: 15px;
     max-width: 1000px;
-    box-shadow: 0px 10px 40px -7px #0000008f, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
 .screen-header {
@@ -42,23 +42,28 @@
 }
 
 .screen-header-button {
+    position: fixed;
+right: 9px;
+top: 55px;
+transform: translate(50%,-50%);
     cursor: pointer;
     text-align: center;
+    z-index: 14;
   width: 30px;
   height: 30px;
   border-radius: 30px;
-  background: #ed1c6f;
+  font-size: 50px;
+  line-height: 25px;
+  text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.72);
+  transform: rotate(45deg);
 }
 
 .screen-body {
+    display: grid;
     width: 100%;
     height: 100%;
-  display: flex;
-}
-
-.screen-body-item {
-  flex: 1;
-  padding: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
 }
 
 .screen-body-item.left {
@@ -82,16 +87,13 @@
 
 @media screen and (max-width: 1000px) {
     .screen {
-        
-        min-width: 100%;
+        top: 55px;
+        min-width: 98%;
         height: 100%;
     }
 
     .screen-body {
-      flex-direction: column;
-    }
-    .screen-header {
-        display: block;
+        grid-template-columns: repeat(1, 1fr);
     }
   
     .screen-body-item.left {

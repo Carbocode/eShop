@@ -52,10 +52,8 @@
     function fullScreen(lol) {
         $('body').append(
             `<div class="screen-fixed">
+            <div onclick="closeScreen()" class="screen-header-button">+</div>
             <div class="screen">
-                <div class="screen-header">
-                    <div onclick="closeScreen()" class="screen-header-button">x</div>
-                </div>
                 <div class="screen-body">
                     <div class="screen-body-item left" style="color:black;">
                     Qui ci va il visualizzatore dei modelli 3D

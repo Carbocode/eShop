@@ -121,8 +121,6 @@
           dataType: "JSON",
           encode: true,
           success: function (res) {
-            if (res.alert != "") alert(res.alert);
-
             formData = new FormData();
 
             file = $("#image")[0].files;
@@ -130,6 +128,7 @@
 
             formData.append("file", file[0]);
             formData.append("id", id);
+            formData.append("alert", res.alert);
             $.ajax({
               type: "POST",
               url: "http://localhost/api/addImage.php",

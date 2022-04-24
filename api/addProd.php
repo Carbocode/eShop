@@ -42,8 +42,10 @@ if (!empty($name) && !empty($price) && !empty($description)) {
 
     $query = "INSERT INTO products(id_prod, nome, prezzo, img, descr) value($idProd, '$name', $price, '', '$description')";
     $pdo->query($query);
+
+    $alert = $alert . "prodotto salvato\n";
 } else {
-    $alert = $alert . "riempire prima tutti i campi";
+    $alert = $alert . "riempire prima tutti i campi\n";
 }
 
 echo json_encode(

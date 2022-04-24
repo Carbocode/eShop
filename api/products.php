@@ -22,7 +22,7 @@ if ($stmt->rowCount() > 0) {
         "<div class='card' onclick='fullScreen(this)' data-description='" . $row["descr"] . "' data-id='" . $row["id_prod"] . "'>
                 <div  class='card-image' style='background-image: url(" . $currentDir . $row['img'] . ");'></div>
                 <div class='card-text'>
-                    <h1>" . $row['nome'] . "</h1>
+                    <h1 style='margin-right:auto;'>" . $row['nome'] . "</h1>
                     <p>" . $row['prezzo'] . "$</p>
                 </div>
             </div>";
