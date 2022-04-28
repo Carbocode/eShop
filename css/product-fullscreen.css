@@ -10,9 +10,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
     opacity: 1;
     background: rgba(0,0,0,.7);
-    overflow: auto;
     transform: translateZ(0);
     transition: opacity .2s;
     perspective: 1000px;
@@ -44,7 +44,7 @@
 .screen-header-button {
     position: fixed;
 right: 9px;
-top: 55px;
+top: 90px;
 transform: translate(50%,-50%);
     cursor: pointer;
     text-align: center;

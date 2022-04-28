@@ -26,7 +26,7 @@ if (trim(isset($data->name))) {
     if (preg_match('/^[a-zA-Z]+$/', $name)) {
         $validName = TRUE;
     } else {
-        $alert = $alert . "Il nome può contenere solo lettere \n";
+        $alert = $alert . "Il nome puó contenere solo lettere \n";
     }
 }
 
@@ -36,7 +36,7 @@ if (trim(isset($data->surname))) {
     if (preg_match('/^[a-zA-Z]+$/', $surname)) {
         $validSurname = TRUE;
     } else {
-        $alert = $alert . "Il cognome può contenere solo lettere \n";
+        $alert = $alert . "Il cognome puó contenere solo lettere \n";
     }
 }
 
@@ -46,13 +46,13 @@ if (trim(isset($data->username))) {
     if (preg_match('/^[a-zA-Z0-9_]+$/', $username)) {
         if ($stmt = $pdo->query("SELECT * FROM account WHERE username='$username'")) {
             if ($stmt->rowCount() > 0) {
-                $alert = $alert .  "Questo username è già in uso \n";
+                $alert = $alert .  "Questo utente esiste già \n";
             } else {
                 $validUsername = TRUE;
             }
         }
     } else {
-        $alert = $alert .  "L'username può contenere solo lettere, numeri e underscore \n";
+        $alert = $alert .  "Lo Username puóà solo contenere lettere, numeri o underscore \n";
     }
 }
 
@@ -62,7 +62,7 @@ if (trim(isset($data->email))) {
     if (preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i", $email)) {
         if ($stmt = $pdo->query("SELECT * FROM account WHERE email='$email'")) {
             if ($stmt->rowCount() > 0) {
-                $alert = $alert .  "Questa mail è già in uso \n";
+                $alert = $alert .  "Questa email è gia in uso \n";
             } else {
                 $validEmail = TRUE;
             }
@@ -80,17 +80,17 @@ if (trim(isset($data->password))) {
             $validPassword = TRUE;
             $password_hash = md5($password);
         } else {
-            $alert = $alert .  'the password does not meet the requirements!';
+            $alert = $alert .  'La Passord non rispetta i requisiti di sicurezza';
         }
     } else {
-        $alert = $alert .  'La password è troppo corta';
+        $alert = $alert .  'La Password è troppo corta';
     }
 }
 
 if ($validUsername && $validEmail && $validName && $validSurname && $validPassword) {
     $sqlInsert = "INSERT INTO account(username, nome, surname, email, pass, tipo) value('$username', '$name', '$surname', '$email', '$password_hash', 'normale')";
     $pdo->query($sqlInsert);
-    $alert = $alert .  "Registrato con Successo";
+    $alert = $alert .  "Registrato con successo";
 }
 
 echo json_encode(array("alert" => $alert));

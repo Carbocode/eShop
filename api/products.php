@@ -20,7 +20,7 @@ if ($stmt->rowCount() > 0) {
     foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
         echo
         "<div class='card' onclick='fullScreen(this)' data-description='" . $row["descr"] . "' data-id='" . $row["id_prod"] . "'>
-                <div  class='card-image' style='background-image: url(" . $currentDir . $row['img'] . ");'></div>
+                <img  class='card-image' height='300px' src='" . $currentDir . $row['img'] . "'></img>
                 <div class='card-text'>
                     <h1 style='margin-right:auto;'>" . $row['nome'] . "</h1>
                     <p>" . $row['prezzo'] . "$</p>

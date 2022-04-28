@@ -54,14 +54,13 @@ ul {
 }
 
 .card {
+    cursor: pointer;
   background-color: var(--secondary-color);
   border-radius: 10px;
   box-shadow: 0px 10px 13px -7px #0000008f, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
 .card-image {
-  width: 100%;
-  min-height: 200px;
   border-radius: 10px;
   object-fit: fill;
   background-position: center;

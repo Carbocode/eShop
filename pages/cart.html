@@ -28,9 +28,24 @@
             <div class="bar3"></div>
           </div>
           <ul class="dropdown">
-            <li><a href="/pages/shop">Products</a></li>
-            <li><a href="">Become a Cuber</a></li>
-            <li><a href="">News</a></li>
+            <li><a href="/pages/shop">Prodotti</a></li>
+            <li><a href="">Diventa un Cuber</a></li>
+            <li><a href="">Notizie</a></li>
+            <div id="google_translate_element"></div>
+            <script
+              type="text/javascript"
+              src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+            ></script>
+            <script type="text/javascript">
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement(
+                  {
+                    pageLanguage: "it",
+                  },
+                  "google_translate_element"
+                );
+              }
+            </script>
           </ul>
         </div>
         <div class="cart">
@@ -43,15 +58,45 @@
     <div class="carrello" style="margin: 50px 20px"></div>
 
     <script>
-      $(document).ready(function () {
+      $(document).ready(loadCart());
+
+      function loadCart() {
         cookie = getCookie("cart");
         if (cookie != "") {
-          obj = JSON.parse(cookie);
-          obj.products.forEach((element) =>
-            $(".carrello").append(element + "<br>")
-          );
+          $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "http://localhost/api/cart.php",
+            data: cookie,
+            dataType: "JSON",
+            encode: true,
+            success: function (res) {
+              sessionStorage.setItem("token", "Bearer " + res.jwt);
+              if (res.alert != "") alert(res.alert);
+              $(".carrello").html(res.message);
+            },
+          });
         }
-      });
+      }
+
+      function removeCart(e, item) {
+        e.preventDefault();
+
+        console.log(item);
+
+        cookie = getCookie("cart");
+        obj = JSON.parse(cookie);
+
+        for (var i = 0; i < obj.products.length; i++) {
+          if (obj.products[i] == item) {
+            obj.products.splice(i, 1);
+            console.log(i);
+          }
+        }
+        cart = JSON.stringify(obj);
+        setCookie("cart", cart, 365);
+        loadCart();
+      }
     </script>
   </body>
 </html>

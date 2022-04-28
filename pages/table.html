@@ -28,9 +28,24 @@
             <div class="bar3"></div>
           </div>
           <ul class="dropdown">
-            <li><a href="/pages/shop">Products</a></li>
-            <li><a href="">Become a Cuber</a></li>
-            <li><a href="">News</a></li>
+            <li><a href="/pages/shop">Prodotti</a></li>
+            <li><a href="">Diventa un Cuber</a></li>
+            <li><a href="">Notizie</a></li>
+            <div id="google_translate_element"></div>
+            <script
+              type="text/javascript"
+              src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+            ></script>
+            <script type="text/javascript">
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement(
+                  {
+                    pageLanguage: "it",
+                  },
+                  "google_translate_element"
+                );
+              }
+            </script>
           </ul>
         </div>
         <div class="cart">
@@ -48,16 +63,14 @@
       function crud(action, user) {
         if (user === undefined) user = "0";
 
-        jData = JSON.stringify({
-          what: action,
-          account: user,
-        });
-
         $.ajax({
           type: "POST",
           contentType: "application/json; charset=utf-8",
           url: "/api/table.php",
-          data: jData,
+          data: JSON.stringify({
+            what: action,
+            account: user,
+          }),
           dataType: "JSON",
           encode: true,
           success: function (res) {

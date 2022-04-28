@@ -28,10 +28,10 @@ if ($headers["Authorization"] !== "null") {
     $auth = new Authentication($token, $_COOKIE["ident"]);
     if ($auth->isLogged()) {
         $settings = $settings .
-            "<li class='navbar-hover'><a>Profile</a></li>" .
-            "<li class='navbar-hover'><a>Orders</a></li>" .
-            "<li class='navbar-hover'><a>Settings</a></li>" .
-            "<br><li class='navbar-hover' onClick='logout(event)'><a id='logout'>Log-Out</a></li><br>";
+            "<li class='navbar-hover'><a>Profilo</a></li>" .
+            "<li class='navbar-hover'><a>Ordini</a></li>" .
+            "<li class='navbar-hover'><a>Impostazioni</a></li>" .
+            "<br><li class='navbar-hover' onClick='logout(event)'><a id='logout'>Esci</a></li><br>";
 
         if ($auth->isAdmin()) {
             /*$stmt = $pdo->query("SELECT tipo FROM account WHERE username='$nome'");
@@ -39,8 +39,8 @@ if ($headers["Authorization"] !== "null") {
             foreach ($stmt->fetchAll(PDO::FETCH_COLUMN) as $row) {
                 if ($row == 'admin') {*/
             $settings = $settings .
-                "<li class='navbar-hover'><a href='/pages/addProduct'>Sell</a></li>" .
-                "<li class='navbar-hover'><a href='/pages/table'>Control Panel</a></li>";
+                "<li class='navbar-hover'><a href='/pages/addProduct'>Vendi</a></li>" .
+                "<li class='navbar-hover'><a href='/pages/table'>Pannello di Controllo</a></li>";
             /*}
             }
         }*/
@@ -51,7 +51,7 @@ if ($headers["Authorization"] !== "null") {
 if (empty($settings)) {
     $settings = $settings .
         "<li class='navbar-hover'><a href='/pages/signin'>Log-In</a></li>" .
-        "<li class='navbar-hover'><a href='/pages/signup'>Register</a></li>";
+        "<li class='navbar-hover'><a href='/pages/signup'>Registrati</a></li>";
 }
 
 echo json_encode(

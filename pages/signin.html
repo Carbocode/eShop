@@ -28,9 +28,24 @@
             <div class="bar3"></div>
           </div>
           <ul class="dropdown">
-            <li><a href="/pages/shop">Products</a></li>
-            <li><a href="">Become a Cuber</a></li>
-            <li><a href="">News</a></li>
+            <li><a href="/pages/shop">Prodotti</a></li>
+            <li><a href="">Diventa un Cuber</a></li>
+            <li><a href="">Notizie</a></li>
+            <div id="google_translate_element"></div>
+            <script
+              type="text/javascript"
+              src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+            ></script>
+            <script type="text/javascript">
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement(
+                  {
+                    pageLanguage: "it",
+                  },
+                  "google_translate_element"
+                );
+              }
+            </script>
           </ul>
         </div>
         <div class="cart">
@@ -39,8 +54,7 @@
       </div>
     </header>
 
-    <br />
-
+    <br /><br /><br /><br />
     <section>
       <div class="screen">
         <div class="screen-header">
@@ -109,7 +123,7 @@
           dataType: "JSON",
           encode: true,
           success: function (res) {
-            sessionStorage.setItem("token", "Bearer " + res.jwt);
+            if (res.jwt != "") sessionStorage.setItem("token", res.jwt);
             if (res.alert != "") alert(res.alert);
             window.location.href = "/";
           },

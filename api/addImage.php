@@ -25,20 +25,20 @@ if (isset($_FILES["file"]["tmp_name"])) {
     $check = getimagesize($_FILES["file"]["tmp_name"]);
     if ($check !== false) {
     } else {
-        $alert = $alert . "File is not an image.\n";
+        $alert = $alert . "Il file non è un'immagine\n";
         $uploadOk = FALSE;
     }
 
     // Check file size
     if ($_FILES["file"]["size"] > 2000000) {
-        $alert = $alert . "Sorry, your file is too large.\n";
+        $alert = $alert . "Il file è troppo largo\n";
         $uploadOk = FALSE;
     }
 
     // Allow certain file formats
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-        $alert = $alert . "Sorry, only JPG, JPEG, PNG files are allowed.\n";
+        $alert = $alert . "Accettati solo JPG, JPEG, PNG\n";
         $uploadOk = FALSE;
     }
     if ($uploadOk) {
@@ -47,7 +47,7 @@ if (isset($_FILES["file"]["tmp_name"])) {
             $query = "UPDATE products SET img='$target_file' WHERE id_prod='" . $_POST['id'] . "'";
             $pdo->query($query);
         } else {
-            $alert = $alert . "Sorry, there was an error uploading your file, you can always do it later\n";
+            $alert = $alert . "C'è stato un errore durante il caricamento dell'immagine. Puoi sempre aggiungerla in seguito\n";
             $query = "UPDATE products SET img='userImg/products/16.jpg' WHERE id_prod='" . $_POST['id'] . "'";
             $pdo->query($query);
         }

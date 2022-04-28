@@ -78,13 +78,13 @@ function showTable($pdo)
 function delete($pdo, $user)
 {
     $pdo->query("DELETE FROM account WHERE username='$user'");
-    return "L'utente $user è stato eliminato";
+    return " $user è stato appena eliminato";
 }
 
 function update($pdo, $user)
 {
     $pdo->query("UPDATE account SET tipo='admin' WHERE username='$user'");
-    return "L'utente $user è stato aggiornato";
+    return "$user è stato appena upgradato";
 }
 
 echo json_encode(

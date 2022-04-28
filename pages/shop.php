@@ -30,9 +30,21 @@
                     <div class="bar3"></div>
                 </div>
                 <ul class="dropdown">
-                    <li><a href="/pages/shop">Products</a></li>
-                    <li><a href="">Become a Cuber</a></li>
-                    <li><a href="">News</a></li>
+                    <li><a href="/pages/shop">Prodotti</a></li>
+                    <li><a href="">Diventa un Cuber</a></li>
+                    <li><a href="">Notizie</a></li>
+                    <div id="google_translate_element"></div>
+                    <script type="text/javascript"
+                        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                    <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                        new google.translate.TranslateElement({
+                                pageLanguage: "it",
+                            },
+                            "google_translate_element"
+                        );
+                    }
+                    </script>
                 </ul>
             </div>
             <div class="cart">
@@ -42,7 +54,7 @@
     </header>
     <br>
 
-    <h1 style="font-size: 45px; margin: 100px 20px 20px 20px;">Products</h1>
+    <h1 style="font-size: 45px; margin: 100px 20px 20px 20px;">Prodotti</h1>
     <section class="store">
         <?php require('../api/products.php');
         ?>
@@ -61,7 +73,7 @@
                     <div class="screen-body-item right">
                     ${lol.innerHTML}
                     <div>${lol.dataset.description}</div>
-                    <a onclick="addToCart(this)">${lol.dataset.id}</a>
+                    <button onclick="addToCart(this)" style='width:50%; margin:auto;'>${lol.dataset.id}</button>
                     </div>
                 </div>
             </div>

@@ -82,15 +82,16 @@ if (!empty($username) && !empty($password)) {
             );
 
             $jwt = JWT::encode($token, $secret_key, "HS256");
-            $alert = $alert . "Successful login.";
+            $jwt = "Bearer " . $jwt;
+            $alert = $alert . "Entrato con successo";
         } else {
-            $alert = $alert . "Password errata";
+            $alert = $alert . "Password sbagliata";
         }
     } else {
-        $alert = $alert .  "Utente non esistente";
+        $alert = $alert .  "Utente inesistente";
     }
 } else {
-    $alert = $alert .  "riempire tutti i campi";
+    $alert = $alert .  "Riempi tutti i campi";
 }
 
 echo json_encode(
