@@ -44,3 +44,4 @@ echo json_encode(
         "message" => $message
     )
 );
+header("HTTP/1.1 200 OK");

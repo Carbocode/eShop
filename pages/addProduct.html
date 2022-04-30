@@ -13,6 +13,7 @@
     <header>
       <div class="navbar">
         <div class="account">
+          <input id="account-dropdown" type="checkbox" />
           <div class="account-dropdown">
             <ul id="#settings">
               <li></li>
@@ -127,7 +128,7 @@
         $.ajax({
           type: "POST",
           contentType: "application/json; charset=utf-8",
-          url: "http://localhost/api/addProd.php",
+          url: "/api/addProd.php",
           data: JSON.stringify({
             name: $("#name").val(),
             price: $("#price").val(),
@@ -146,14 +147,20 @@
             formData.append("alert", res.alert);
             $.ajax({
               type: "POST",
-              url: "http://localhost/api/addImage.php",
+              url: "/api/addImage.php",
               data: formData,
               processData: false,
               contentType: false,
               success: function (res) {
                 if (res.alert != "") alert(res.alert);
               },
+              error: function (res) {
+                if (res.alert != "") alert(res.alert);
+              },
             });
+          },
+          error: function (res) {
+            if (res.alert != "") alert(res.alert);
           },
         });
       }

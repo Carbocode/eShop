@@ -73,9 +73,9 @@
   display: none;
   position: fixed;
   margin: 0px;
-  width: 35px;
+  width: 36px;
   height: 50px;
-  right: 55px;
+  right: 56px;
   opacity: 0;
   z-index: 1000;
 }
@@ -116,6 +116,7 @@
 .sections {
   height: auto;
 }
+
 .dropdown {
   width: 100%;
   display: inline-block;
@@ -147,15 +148,28 @@ NAVBAR HOVER
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   top: 60px;
   padding: 10px;
-  z-index: 1;
-  left: -1000px;
+  z-index: 3;
+  display: none;
   transition: left 1s;
   transition-delay: 0.2s;
 }
 
-.account:hover .account-dropdown {
-  left: 7px;
-  transition: left 0.2s;
+#account-dropdown {
+    cursor: pointer;
+  position: fixed;
+  margin: 0px;
+  width: 47px;
+  height: 47px;
+  left: 2px;
+  top: 2px;
+  opacity: 0;
+  z-index: 1000;
+}
+
+
+#account-dropdown:checked ~ .account-dropdown{
+    left: 7px;
+    display: block;
 }
 
 .navbar-hover {

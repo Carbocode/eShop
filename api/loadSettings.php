@@ -20,6 +20,8 @@ $pdo = $databaseService->getConnection();
 $data = json_decode(file_get_contents("php://input"));
 
 if (isset($data->logout)) {
+    setcookie('cart', '', time() - 7000000, '/');
+    setcookie('ident', '', time() - 7000000, '/');
     $alert = $alert . "successfully logged out";
 }
 
@@ -57,4 +59,5 @@ if (empty($settings)) {
 echo json_encode(
     array("settings" => $settings, "alert" => $alert)
 );
+header("HTTP/1.1 200 OK");
 $pdo = null;

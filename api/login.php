@@ -22,7 +22,8 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-$alert = "";
+$alertError = "";
+$alertSuccess = "";
 $jwt = "";
 $expire = 0;
 
@@ -83,23 +84,34 @@ if (!empty($username) && !empty($password)) {
 
             $jwt = JWT::encode($token, $secret_key, "HS256");
             $jwt = "Bearer " . $jwt;
-            $alert = $alert . "Entrato con successo";
+            $alertSuccess = $alertSuccess . "Entrato con successo";
         } else {
-            $alert = $alert . "Password sbagliata";
+            $alertError = $alertError . "Password sbagliata";
         }
     } else {
-        $alert = $alert .  "Utente inesistente";
+        $alertError = $alertError .  "Utente inesistente";
     }
 } else {
-    $alert = $alert .  "Riempi tutti i campi";
+    $alertError = $alertError .  "Riempi tutti i campi";
 }
 
-echo json_encode(
-    array(
-        "alert" => $alert,
-        "jwt" => $jwt,
-        "expireAt" => $expire
-    )
-);
+if (empty(trim($alertError))) {
+    echo json_encode(
+        array(
+            "alert" => $alertSuccess,
+            "jwt" => $jwt,
+            "expireAt" => $expire
+        )
+    );
+    http_response_code(200);
+} else {
+    echo json_encode(
+        array(
+            "alert" => $alertError,
+        )
+    );
+    http_response_code(400);
+}
+
 
 $pdo = null;

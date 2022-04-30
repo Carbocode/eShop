@@ -27,7 +27,7 @@ function loadSettings() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "http://localhost/api/loadSettings.php",
+        url: "/api/loadSettings.php",
         headers: {"Authorization": sessionStorage.getItem('token')},
         dataType: "JSON",
         encode: true,
@@ -36,6 +36,9 @@ function loadSettings() {
             if (res.alert != "")
                 alert(res.alert);
         },
+        error: function (res) {
+            if (res.alert != "") alert(res.alert);
+          },
     });
 }
 
@@ -44,7 +47,7 @@ function logout() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "http://localhost/api/loadSettings.php",
+        url: "/api/loadSettings.php",
         headers: {"Authorization": sessionStorage.getItem('token')},
         data: JSON.stringify({logout: true}),
         dataType: "JSON",
@@ -57,6 +60,9 @@ function logout() {
             if (res.alert != "")
                 alert(res.alert);
         },
+        error: function (res) {
+            if (res.alert != "") alert(res.alert);
+          },
     });
 }
 

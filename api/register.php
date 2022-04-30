@@ -18,7 +18,8 @@ $validUsername = FALSE;
 $validEmail = FALSE;
 $validPassword = FALSE;
 
-$alert = "";
+$alertError = "";
+$alertSuccess = "";
 
 if (trim(isset($data->name))) {
     $name = trim($data->name);
@@ -26,7 +27,7 @@ if (trim(isset($data->name))) {
     if (preg_match('/^[a-zA-Z]+$/', $name)) {
         $validName = TRUE;
     } else {
-        $alert = $alert . "Il nome puó contenere solo lettere \n";
+        $alertError = $alertError . "Il nome puó contenere solo lettere \n";
     }
 }
 
@@ -36,7 +37,7 @@ if (trim(isset($data->surname))) {
     if (preg_match('/^[a-zA-Z]+$/', $surname)) {
         $validSurname = TRUE;
     } else {
-        $alert = $alert . "Il cognome puó contenere solo lettere \n";
+        $alertError = $alertError . "Il cognome puó contenere solo lettere \n";
     }
 }
 
@@ -46,13 +47,13 @@ if (trim(isset($data->username))) {
     if (preg_match('/^[a-zA-Z0-9_]+$/', $username)) {
         if ($stmt = $pdo->query("SELECT * FROM account WHERE username='$username'")) {
             if ($stmt->rowCount() > 0) {
-                $alert = $alert .  "Questo utente esiste già \n";
+                $alertError = $alertError .  "Questo utente esiste già \n";
             } else {
                 $validUsername = TRUE;
             }
         }
     } else {
-        $alert = $alert .  "Lo Username puóà solo contenere lettere, numeri o underscore \n";
+        $alertError = $alertError .  "Lo Username puó solo contenere lettere, numeri o underscore \n";
     }
 }
 
@@ -62,13 +63,13 @@ if (trim(isset($data->email))) {
     if (preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i", $email)) {
         if ($stmt = $pdo->query("SELECT * FROM account WHERE email='$email'")) {
             if ($stmt->rowCount() > 0) {
-                $alert = $alert .  "Questa email è gia in uso \n";
+                $alertError = $alertError .  "Questa email è gia in uso \n";
             } else {
                 $validEmail = TRUE;
             }
         }
     } else {
-        $alert = $alert .  "Inserire una mail valida \n";
+        $alertError = $alertError .  "Inserire una mail valida \n";
     }
 }
 
@@ -80,17 +81,23 @@ if (trim(isset($data->password))) {
             $validPassword = TRUE;
             $password_hash = md5($password);
         } else {
-            $alert = $alert .  'La Passord non rispetta i requisiti di sicurezza';
+            $alertError = $alertError .  'La Passord non rispetta i requisiti di sicurezza';
         }
     } else {
-        $alert = $alert .  'La Password è troppo corta';
+        $alertError = $alertError .  'La Password è troppo corta';
     }
 }
 
 if ($validUsername && $validEmail && $validName && $validSurname && $validPassword) {
     $sqlInsert = "INSERT INTO account(username, nome, surname, email, pass, tipo) value('$username', '$name', '$surname', '$email', '$password_hash', 'normale')";
     $pdo->query($sqlInsert);
-    $alert = $alert .  "Registrato con successo";
+    $alertSuccess = $alertSuccess .  "Registrato con successo";
 }
 
-echo json_encode(array("alert" => $alert));
+if (empty(trim($alertError))) {
+    echo json_encode(array("alert" => $alertSuccess));
+    header("HTTP/1.1 200 OK");
+} else {
+    echo json_encode(array("alert" => $alertError));
+    header("HTTP/1.1 400 OK");
+}

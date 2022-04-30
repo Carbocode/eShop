@@ -90,4 +90,6 @@ function update($pdo, $user)
 echo json_encode(
     array("message" => $message, "alert" => $alert)
 );
+header("HTTP/1.1 200 OK");
+
 $pdo = null;

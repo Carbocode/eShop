@@ -13,6 +13,7 @@
     <header>
       <div class="navbar">
         <div class="account">
+          <input id="account-dropdown" type="checkbox" />
           <div class="account-dropdown">
             <ul id="#settings">
               <li></li>
@@ -66,7 +67,7 @@
           $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            url: "http://localhost/api/cart.php",
+            url: "/api/cart.php",
             data: cookie,
             dataType: "JSON",
             encode: true,
@@ -74,6 +75,9 @@
               sessionStorage.setItem("token", "Bearer " + res.jwt);
               if (res.alert != "") alert(res.alert);
               $(".carrello").html(res.message);
+            },
+            error: function (res) {
+              if (res.alert != "") alert(res.alert);
             },
           });
         }

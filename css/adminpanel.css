@@ -1,0 +1,66 @@
+/* The side navigation menu */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: whitesmoke;
+    overflow-x: hidden;
+    padding-top: 100px;
+  }
+
+#side-panel{
+    cursor: pointer;
+  position: fixed;
+  margin: 0px;
+  width: 47px;
+  height: 47px;
+  left: 10px;
+  top: 60px;
+  width: 47px;
+  height: 47px;
+  z-index: 2;
+}
+
+#side-panel:checked ~ .sidenav {
+    width :250px;
+}
+
+#side-panel:checked ~ .main {
+   margin-left :250px;
+}
+
+  .sidenav a{
+    color:black;
+  }
+  
+  .sidenav ul li {
+    padding: 5px 5px 5px 22px;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+  }
+  
+  .sidenav ul li:hover {
+    border-radius: 5px;
+  background-color: var(--accent-color);
+  }
+
+  .sidenav ul li a{
+      color:black;
+  }
+  
+  
+  /* Position and style the close button (top right corner) */
+  .sidenav .closebtn {
+    font-size: 36px;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }

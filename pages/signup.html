@@ -13,6 +13,7 @@
     <header>
       <div class="navbar">
         <div class="account">
+          <input id="account-dropdown" type="checkbox" />
           <div class="account-dropdown">
             <ul id="#settings">
               <li></li>
@@ -54,7 +55,7 @@
       </div>
     </header>
 
-    <br />
+    <br /><br /><br />
 
     <section>
       <div class="screen">
@@ -143,7 +144,7 @@
         $.ajax({
           type: "POST",
           contentType: "application/json; charset=utf-8",
-          url: "http://localhost/api/register.php",
+          url: "/api/register.php",
           data: JSON.stringify({
             name: $("#name").val(),
             surname: $("#surname").val(),
@@ -155,7 +156,10 @@
           encode: true,
           success: function (res) {
             if (res.alert != "") alert(res.alert);
-            window.location.href = "http://localhost";
+            window.location.href = "/";
+          },
+          error: function (res) {
+            if (res.alert != "") alert(res.alert);
           },
         });
       }

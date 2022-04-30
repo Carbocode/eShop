@@ -10,8 +10,8 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 $currentDir = "../";
 $target_dir = "userImg/products/";
 
-$settings = "";
-$alert = $_POST['alert'];
+$alertSuccess = $_POST['alert'];
+$alertError = "";
 
 $databaseService = new DatabaseService();
 $pdo = $databaseService->getConnection();
@@ -25,20 +25,20 @@ if (isset($_FILES["file"]["tmp_name"])) {
     $check = getimagesize($_FILES["file"]["tmp_name"]);
     if ($check !== false) {
     } else {
-        $alert = $alert . "Il file non è un'immagine\n";
+        $alertError = $alertError . "Il file non è un'immagine\n";
         $uploadOk = FALSE;
     }
 
     // Check file size
     if ($_FILES["file"]["size"] > 2000000) {
-        $alert = $alert . "Il file è troppo largo\n";
+        $alertError = $alertError . "Il file è troppo largo\n";
         $uploadOk = FALSE;
     }
 
     // Allow certain file formats
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-        $alert = $alert . "Accettati solo JPG, JPEG, PNG\n";
+        $alertError = $alertError . "Accettati solo JPG, JPEG, PNG\n";
         $uploadOk = FALSE;
     }
     if ($uploadOk) {
@@ -47,14 +47,19 @@ if (isset($_FILES["file"]["tmp_name"])) {
             $query = "UPDATE products SET img='$target_file' WHERE id_prod='" . $_POST['id'] . "'";
             $pdo->query($query);
         } else {
-            $alert = $alert . "C'è stato un errore durante il caricamento dell'immagine. Puoi sempre aggiungerla in seguito\n";
+            $alertSuccess = $alertSuccess . "C'è stato un errore durante il caricamento dell'immagine. Puoi sempre aggiungerla in seguito\n";
             $query = "UPDATE products SET img='userImg/products/16.jpg' WHERE id_prod='" . $_POST['id'] . "'";
             $pdo->query($query);
         }
     }
 }
 
-echo json_encode(
-    array("settings" => $settings, "alert" => $alert)
-);
+if (empty(trim($alertError))) {
+    echo json_encode(array("alert" => $alertSuccess));
+    header("HTTP/1.1 200 OK");
+} else {
+    echo json_encode(array("alert" => $alertError));
+    header("HTTP/1.1 400 OK");
+}
+
 $pdo = null;

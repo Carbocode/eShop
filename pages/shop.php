@@ -11,10 +11,10 @@
 </head>
 
 <body>
-
     <header>
         <div class="navbar">
             <div class="account">
+                <input id="account-dropdown" type="checkbox" />
                 <div class="account-dropdown">
                     <ul id="#settings">
                         <li></li>
@@ -73,7 +73,7 @@
                     <div class="screen-body-item right">
                     ${lol.innerHTML}
                     <div>${lol.dataset.description}</div>
-                    <button onclick="addToCart(this)" style='width:50%; margin:auto;'>${lol.dataset.id}</button>
+                    <button onclick="addToCart(${lol.dataset.id})" style='width:50%; margin:auto;'>Aggiungi al carrello</button>
                     </div>
                 </div>
             </div>
@@ -85,12 +85,25 @@
         cookie = getCookie("cart");
         if (cookie != "") {
             obj = JSON.parse(cookie)
-            obj.products.push(lol.innerHTML)
-            cookie = JSON.stringify(obj)
-            setCookie("cart", cookie, 365);
+            cookie = getCookie("cart");
+            obj = JSON.parse(cookie);
+
+            alreadyExisting = false;
+            for (var i = 0; i < obj.products.length; i++) {
+                if (obj.products[i] == lol) {
+                    alreadyExisting = true;
+                    alert("Prodotto già nel carrello");
+                    break;
+                }
+            }
+            if (!alreadyExisting) {
+                obj.products.push(lol);
+                cookie = JSON.stringify(obj)
+                setCookie("cart", cookie, 365);
+            }
         } else {
             cart = JSON.stringify({
-                "products": [lol.innerHTML]
+                "products": [lol]
             })
             setCookie("cart", cart, 365);
         }

@@ -2,6 +2,7 @@
 @import url(header-imagestyle.css);
 @import url(product-fullscreen.css);
 @import url(signup.css);
+@import url(adminpanel.css);
 
 body {
   background-color: var(--accent-color);
@@ -134,14 +135,8 @@ table,
 th,
 td {
   padding: 7px;
-  color: var(--text-color);
-  background-color: var(--secondary-color);
-}
-
-table {
-  border-radius: 10px;
-  margin: auto;
-  box-shadow: 0px 10px 40px -7px #0000008f, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  color: black;
+  background-color: white;
 }
 
 td {

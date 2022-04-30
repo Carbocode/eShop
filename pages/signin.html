@@ -13,6 +13,7 @@
     <header>
       <div class="navbar">
         <div class="account">
+          <input id="account-dropdown" type="checkbox" />
           <div class="account-dropdown">
             <ul id="#settings">
               <li></li>
@@ -115,7 +116,7 @@
         $.ajax({
           type: "POST",
           contentType: "application/json; charset=utf-8",
-          url: "http://localhost/api/login.php",
+          url: "/api/login.php",
           data: JSON.stringify({
             username: $("#username").val(),
             password: $("#password").val(),
@@ -126,6 +127,9 @@
             if (res.jwt != "") sessionStorage.setItem("token", res.jwt);
             if (res.alert != "") alert(res.alert);
             window.location.href = "/";
+          },
+          error: function (res, status, error) {
+            if (res != "") alert(res);
           },
         });
       }

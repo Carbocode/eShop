@@ -13,6 +13,7 @@
     <header>
       <div class="navbar">
         <div class="account">
+          <input id="account-dropdown" type="checkbox" />
           <div class="account-dropdown">
             <ul id="#settings">
               <li></li>
@@ -55,7 +56,21 @@
     </header>
     <br /><br /><br /><br /><br /><br /><br /><br />
 
-    <table class="sortable" id="table"></table>
+    <h1 id="side-panel" style="color: black">x</h1>
+    <input id="side-panel" type="checkbox" style="opacity: 0" />
+
+    <div class="sidenav">
+      <ul>
+        <li><a href="#">Utenti</a></li>
+        <li><a href="#">Articoli</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </div>
+
+    <div class="main">
+      <table id="table"></table>
+    </div>
 
     <script>
       $(document).ready(crud("read"));
@@ -76,6 +91,9 @@
           success: function (res) {
             if (res.alert != "") alert(res.alert);
             document.getElementById("table").innerHTML = res.message;
+          },
+          error: function (res) {
+            if (res.alert != "") alert(res.alert);
           },
         });
       }
