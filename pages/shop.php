@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DefaultCube</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <script src="https://kit.fontawesome.com/7ad7bfae68.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/script.js"></script>
 </head>
@@ -30,9 +31,15 @@
                     <div class="bar3"></div>
                 </div>
                 <ul class="dropdown">
-                    <li><a href="/pages/shop">Prodotti</a></li>
-                    <li><a href="">Diventa un Cuber</a></li>
-                    <li><a href="">Notizie</a></li>
+                    <li>
+                        <a href="/pages/shop"><i class="fa-solid fa-store"></i>Prodotti</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-solid fa-cubes"></i>Diventa un Cuber</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-solid fa-newspaper"></i>Notizie</a>
+                    </li>
                     <div id="google_translate_element"></div>
                     <script type="text/javascript"
                         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -62,9 +69,12 @@
 
     <script>
     function fullScreen(lol) {
+        $('body').css({
+            overflow: 'hidden'
+        });
         $('body').append(
             `<div class="screen-fixed">
-            <div onclick="closeScreen()" class="screen-header-button">+</div>
+            <div onclick="closeScreen()" class="screen-header-button"><i class="fa-solid fa-xmark"></i></div>
             <div class="screen">
                 <div class="screen-body">
                     <div class="screen-body-item left" style="color:black;">
@@ -72,7 +82,7 @@
                     </div>
                     <div class="screen-body-item right">
                     ${lol.innerHTML}
-                    <div>${lol.dataset.description}</div>
+                    <p>${lol.dataset.description}</p>
                     <button onclick="addToCart(${lol.dataset.id})" style='width:50%; margin:auto;'>Aggiungi al carrello</button>
                     </div>
                 </div>
@@ -112,6 +122,9 @@
 
     function closeScreen() {
         $(".screen-fixed").remove()
+        $('body').css({
+            overflow: 'scroll'
+        });
     }
     </script>
 

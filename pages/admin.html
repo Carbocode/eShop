@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Title</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/7ad7bfae68.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/script.js"></script>
   </head>
 
-  <body>
+  <body style="background-color: rgb(252, 252, 252)">
     <header>
-      <div class="navbar">
+      <div class="navbar" style="position: relative">
         <div class="account">
           <input id="account-dropdown" type="checkbox" />
           <div class="account-dropdown">
@@ -29,9 +33,17 @@
             <div class="bar3"></div>
           </div>
           <ul class="dropdown">
-            <li><a href="/pages/shop">Prodotti</a></li>
-            <li><a href="">Diventa un Cuber</a></li>
-            <li><a href="">Notizie</a></li>
+            <li>
+              <a href="/pages/shop"
+                ><i class="fa-solid fa-store"></i>Prodotti</a
+              >
+            </li>
+            <li>
+              <a href=""><i class="fa-solid fa-cubes"></i>Diventa un Cuber</a>
+            </li>
+            <li>
+              <a href=""><i class="fa-solid fa-newspaper"></i>Notizie</a>
+            </li>
             <div id="google_translate_element"></div>
             <script
               type="text/javascript"
@@ -54,17 +66,20 @@
         </div>
       </div>
     </header>
-    <br /><br /><br /><br /><br /><br /><br /><br />
 
-    <h1 id="side-panel" style="color: black">x</h1>
+    <h1 id="side-panel" style="color: rgb(121, 121, 121)">
+      <i class="fa-solid fa-caret-left"></i>
+    </h1>
     <input id="side-panel" type="checkbox" style="opacity: 0" />
 
     <div class="sidenav">
       <ul>
-        <li><a href="#">Utenti</a></li>
-        <li><a href="#">Articoli</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">About</a></li>
+        <li>
+          <a href="#"><i class="fa-solid fa-address-book"></i>Utenti</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-solid fa-bag-shopping"></i>Articoli</a>
+        </li>
       </ul>
     </div>
 

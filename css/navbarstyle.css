@@ -1,10 +1,12 @@
 .navbar {
     background-color: var(--secondary-color);
-  position: fixed;
   display: flex;
   float: inherit;
   width: 100%;
   z-index: 100;
+  position: fixed;
+  border-bottom: solid 1px;
+  border-color: rgb(68, 68, 68);
 }
 
 .cart {
@@ -35,7 +37,7 @@
   display: flex;
   list-style: none;
   float: right;
-  margin: 0px;
+  margin:0px;
   overflow: hidden;
 }
 
@@ -43,6 +45,8 @@
   height: var(--navbar);
   padding-left: 30px;
   padding-right: 30px;
+  margin-top: 5px;
+  font-size: 25px;
   text-align: center;
 }
 
@@ -140,6 +144,8 @@ NAVBAR HOVER
 -------------------------------------------------------*/
 
 .account-dropdown {
+    border: solid 1px;
+  border-color: rgb(68, 68, 68);
   position: absolute;
   text-align: left;
   background-color: var(--secondary-color);

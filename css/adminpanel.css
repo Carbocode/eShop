@@ -1,14 +1,22 @@
-/* The side navigation menu */
+.main{
+    overflow-x: scroll;
+    transition: 0.5s;
+}
 .sidenav {
     height: 100%;
     width: 0;
     position: fixed;
     z-index: 1;
-    top: 0;
+    top: 50;
     left: 0;
     background-color: whitesmoke;
     overflow-x: hidden;
-    padding-top: 100px;
+    padding-top: 30px;
+    transition: 0.5s;
+  }
+
+  .sidenav ul{
+    opacity: 0;
   }
 
 #side-panel{
@@ -18,14 +26,22 @@
   width: 47px;
   height: 47px;
   left: 10px;
-  top: 60px;
-  width: 47px;
-  height: 47px;
+  top: 47px;
+  width: 25px;
+  height: 30px;
   z-index: 2;
 }
 
 #side-panel:checked ~ .sidenav {
     width :250px;
+    border-right: solid 1px;
+    border-color: rgb(179, 179, 179);
+}
+
+#side-panel:checked ~ .sidenav ul {
+    opacity: 1;
+    transition: opacity 0.1s;  
+    transition-delay: 0.3s;
 }
 
 #side-panel:checked ~ .main {

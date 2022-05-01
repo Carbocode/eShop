@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Title</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/7ad7bfae68.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/script.js"></script>
   </head>
@@ -29,9 +33,17 @@
             <div class="bar3"></div>
           </div>
           <ul class="dropdown">
-            <li><a href="/pages/shop">Prodotti</a></li>
-            <li><a href="">Diventa un Cuber</a></li>
-            <li><a href="">Notizie</a></li>
+            <li>
+              <a href="/pages/shop"
+                ><i class="fa-solid fa-store"></i>Prodotti</a
+              >
+            </li>
+            <li>
+              <a href=""><i class="fa-solid fa-cubes"></i>Diventa un Cuber</a>
+            </li>
+            <li>
+              <a href=""><i class="fa-solid fa-newspaper"></i>Notizie</a>
+            </li>
             <div id="google_translate_element"></div>
             <script
               type="text/javascript"
@@ -54,9 +66,10 @@
         </div>
       </div>
     </header>
-    <br />
+    <br /><br /><br />
 
-    <div class="carrello" style="margin: 50px 20px"></div>
+    <h1 style="font-size: 45px; margin: 20px">Carrello</h1>
+    <div class="carrello" style="margin: 20px"></div>
 
     <script>
       $(document).ready(loadCart());

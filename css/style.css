@@ -32,6 +32,10 @@ p {
   padding: 0;
 }
 
+img{
+    border: solid 0px;
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -61,7 +65,7 @@ ul {
   box-shadow: 0px 10px 13px -7px #0000008f, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
-.card-image {
+.card-image {       
   border-radius: 10px;
   object-fit: fill;
   background-position: center;
@@ -131,14 +135,21 @@ ul {
   background-color: var(--secondary-color);
 }
 
-table,
-th,
-td {
-  padding: 7px;
-  color: black;
-  background-color: white;
-}
-
-td {
-  border: 1px solid;
-}
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+    color: black;
+    vertical-align: middle;
+  }
+  
+  tr:nth-child(even){background-color: #f2f2f2}
+  
+  th {
+    background-color: var(--secondary-color);
+    color: white;
+  }
