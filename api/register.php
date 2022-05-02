@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/api/config/database.php';
+include_once '../api/config/database.php';
 
 header("Access-Control-Allow-Origin: * ");
 header("Content-Type: application/json; charset=UTF-8");
@@ -98,6 +98,5 @@ if (empty(trim($alertError))) {
     echo json_encode(array("alert" => $alertSuccess));
     header("HTTP/1.1 200 OK");
 } else {
-    echo json_encode(array("alert" => $alertError));
-    header("HTTP/1.1 400 OK");
+    header("HTTP/1.1 400 $alertError");
 }

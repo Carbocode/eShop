@@ -97,6 +97,7 @@
           type: "POST",
           contentType: "application/json; charset=utf-8",
           url: "/api/table.php",
+          headers: { Authorization: sessionStorage.getItem("token") },
           data: JSON.stringify({
             what: action,
             account: user,
@@ -107,8 +108,8 @@
             if (res.alert != "") alert(res.alert);
             document.getElementById("table").innerHTML = res.message;
           },
-          error: function (res) {
-            if (res.alert != "") alert(res.alert);
+          error: function (jqXHR, textStatus, errorThrown) {
+            if (errorThrown != "") alert(errorThrown);
           },
         });
       }

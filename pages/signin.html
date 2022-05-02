@@ -138,8 +138,8 @@
             if (res.alert != "") alert(res.alert);
             window.location.href = "/";
           },
-          error: function (res, status, error) {
-            if (res != "") alert(res);
+          error: function (jqXHR, textStatus, errorThrown) {
+            if (errorThrown != "") alert(errorThrown);
           },
         });
       }

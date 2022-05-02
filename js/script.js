@@ -36,8 +36,8 @@ function loadSettings() {
             if (res.alert != "")
                 alert(res.alert);
         },
-        error: function (res) {
-            if (res.alert != "") alert(res.alert);
+        error: function (jqXHR, textStatus, errorThrown) {
+            if (errorThrown != "") alert(errorThrown);
           },
     });
 }
@@ -60,8 +60,8 @@ function logout() {
             if (res.alert != "")
                 alert(res.alert);
         },
-        error: function (res) {
-            if (res.alert != "") alert(res.alert);
+        error: function (jqXHR, textStatus, errorThrown) {
+            if (errorThrown != "") alert(errorThrown);
           },
     });
 }

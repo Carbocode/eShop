@@ -72,6 +72,12 @@ ul {
   background-image: url(../img/cube.png);
 }
 
+.card-price{
+    background-color: var(--accent-color);
+    padding: 5px;
+    border-radius: 10px;
+}
+
 .card-text {
     display: flex;
     height: 48px;

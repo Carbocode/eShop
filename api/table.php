@@ -1,8 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/api/config/database.php';
-require $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
-
-use \Firebase\JWT\JWT;
+include_once '../api/config/database.php';
+include '../api/config/auth.php';
 
 header("Access-Control-Allow-Origin: * ");
 header("Content-Type: application/json; charset=UTF-8");
@@ -16,7 +14,21 @@ $pdo = $databaseService->getConnection();
 $message = "";
 $alert = "";
 
+$headers = apache_request_headers();
+
 $data = json_decode(file_get_contents("php://input"));
+
+if ($headers["Authorization"] !== "null") {
+    $token = $headers["Authorization"];
+    $auth = new Authentication($token, $_COOKIE["ident"]);
+    if (!($auth->isAdmin())) {
+        header("Location: /");
+        die();
+    }
+} else {
+    header("Location: /");
+    die();
+}
 
 if (isset($data->what)) {
     switch ($data->what) {

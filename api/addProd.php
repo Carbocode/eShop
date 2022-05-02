@@ -1,6 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/api/config/database.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/api/config/auth.php';
+include_once '../api/config/database.php';
+include '../api/config/auth.php';
 
 header("Access-Control-Allow-Origin: * ");
 header("Content-Type: application/json; charset=UTF-8");
@@ -8,11 +8,11 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-$headers = apache_request_headers();
-
 $settings = "";
 $alertError = "";
 $alertSuccess = "";
+
+$headers = apache_request_headers();
 
 $databaseService = new DatabaseService();
 $pdo = $databaseService->getConnection();
@@ -21,6 +21,18 @@ $data = json_decode(file_get_contents("php://input"));
 
 $currentDir = "../";
 $target_dir = "userImg/products/";
+
+if ($headers["Authorization"] !== "null") {
+    $token = $headers["Authorization"];
+    $auth = new Authentication($token, $_COOKIE["ident"]);
+    if (!($auth->isAdmin())) {
+        header("Location: /");
+        die();
+    }
+} else {
+    header("Location: /");
+    die();
+}
 
 if (trim(isset($data->name))) {
     $name = $data->name;
@@ -56,8 +68,7 @@ if (empty(trim($alertError))) {
     echo json_encode(array("settings" => $settings, "alert" => $alertSuccess, "id" => $idProd));
     header("HTTP/1.1 200 OK");
 } else {
-    echo json_encode(array("alert" => $alertError));
-    header("HTTP/1.1 400 OK");
+    header("HTTP/1.1 400 $alertError");
 }
 
 $pdo = null;

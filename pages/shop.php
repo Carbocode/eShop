@@ -82,8 +82,8 @@
                     </div>
                     <div class="screen-body-item right">
                     ${lol.innerHTML}
-                    <p>${lol.dataset.description}</p>
-                    <button onclick="addToCart(${lol.dataset.id})" style='width:50%; margin:auto;'>Aggiungi al carrello</button>
+                    <p style='padding:10px; margin-bottom: 30px'>${lol.dataset.description}</p>
+                    <button onclick="addToCart(${lol.dataset.id})" style='width:50%; margin: 10px auto; padding: 5px'>Aggiungi al carrello</button>
                     </div>
                 </div>
             </div>

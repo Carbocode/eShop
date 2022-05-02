@@ -1,6 +1,6 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/api/config/database.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/api/config/auth.php';
+include '../api/config/database.php';
+include '../api/config/auth.php';
 $currentDir = "../";
 
 header("Access-Control-Allow-Origin: * ");

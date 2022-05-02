@@ -141,6 +141,7 @@
           type: "POST",
           contentType: "application/json; charset=utf-8",
           url: "/api/addProd.php",
+          headers: { Authorization: sessionStorage.getItem("token") },
           data: JSON.stringify({
             name: $("#name").val(),
             price: $("#price").val(),
@@ -166,13 +167,13 @@
               success: function (res) {
                 if (res.alert != "") alert(res.alert);
               },
-              error: function (res) {
-                if (res.alert != "") alert(res.alert);
+              error: function (jqXHR, textStatus, errorThrown) {
+                if (errorThrown != "") alert(errorThrown);
               },
             });
           },
-          error: function (res) {
-            if (res.alert != "") alert(res.alert);
+          error: function (jqXHR, textStatus, errorThrown) {
+            if (errorThrown != "") alert(errorThrown);
           },
         });
       }

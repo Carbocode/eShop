@@ -1,6 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/api/config/database.php';
-require $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
+include_once '../api/config/database.php';
+require "../vendor/autoload.php";
 
 use \Firebase\JWT\JWT;
 
@@ -105,12 +105,7 @@ if (empty(trim($alertError))) {
     );
     http_response_code(200);
 } else {
-    echo json_encode(
-        array(
-            "alert" => $alertError,
-        )
-    );
-    http_response_code(400);
+    header("HTTP/1.1 400 $alertError");
 }
 
 

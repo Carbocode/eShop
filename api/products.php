@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/api/config/database.php';
+include_once '../api/config/database.php';
 
 // header("Access-Control-Allow-Origin: * ");
 // header("Content-Type: application/json; charset=UTF-8");
@@ -23,7 +23,7 @@ if ($stmt->rowCount() > 0) {
                 <img  class='card-image' width='100%' src='" . $currentDir . $row['img'] . "'></img>
                 <div class='card-text'>
                     <h1 style='margin-right:auto;'>" . $row['nome'] . "</h1>
-                    <p>" . $row['prezzo'] . "$</p>
+                    <p class='card-price'>" . $row['prezzo'] . "$</p>
                 </div>
             </div>";
     }
