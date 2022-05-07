@@ -69,82 +69,83 @@
     <br /><br /><br /><br />
 
     <section>
-      <div class="screen">
-        <div class="screen-header">
-          <div class="screen-header-left">
-            <div class="screen-header-button close"></div>
-            <div class="screen-header-button maximize"></div>
-            <div class="screen-header-button minimize"></div>
+      <div class="screen-body-item">
+        <form class="app-form">
+          <div class="app-form-group">
+            <fieldset>
+              <legend>Password</legend>
+              <input
+                name="name"
+                id="name"
+                class="app-form-control"
+                placeholder="Nome"
+                autofocus
+                required
+              />
+            </fieldset>
           </div>
-        </div>
-        <div class="screen-body">
-          <div class="screen-body-item left">
-            <div class="app-title">SIGN UP</div>
+          <div class="app-form-group">
+            <fieldset>
+              <legend>Password</legend>
+              <input
+                name="surname"
+                id="surname"
+                class="app-form-control"
+                placeholder="Cognome"
+                required
+              />
+            </fieldset>
           </div>
-          <div class="screen-body-item">
-            <form class="app-form">
-              <div class="app-form-group">
-                <input
-                  name="name"
-                  id="name"
-                  class="app-form-control"
-                  placeholder="Nome"
-                  autofocus
-                  required
-                />
-              </div>
-              <div class="app-form-group">
-                <input
-                  name="surname"
-                  id="surname"
-                  class="app-form-control"
-                  placeholder="Cognome"
-                  required
-                />
-              </div>
-              <div class="app-form-group message">
-                <input
-                  name="username"
-                  id="username"
-                  class="app-form-control"
-                  placeholder="Username"
-                  required
-                />
-              </div>
-              <div class="app-form-group">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="app-form-control"
-                  placeholder="E-Mail"
-                  required
-                />
-              </div>
-              <div class="app-form-group message">
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  class="app-form-control"
-                  placeholder="Password"
-                  minlength="8"
-                  required
-                />
-              </div>
-              <div class="app-form-group buttons">
-                <input
-                  type="submit"
-                  name="Signup"
-                  id="Signup"
-                  onclick="register(event)"
-                  class="app-form-button"
-                  value="Sign-Up"
-                />
-              </div>
-            </form>
+          <div class="app-form-group message">
+            <fieldset>
+              <legend>Password</legend>
+              <input
+                name="username"
+                id="username"
+                class="app-form-control"
+                placeholder="Username"
+                required
+              />
+            </fieldset>
           </div>
-        </div>
+          <div class="app-form-group">
+            <fieldset>
+              <legend>Password</legend>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="app-form-control"
+                placeholder="E-Mail"
+                required
+              />
+            </fieldset>
+          </div>
+          <div class="app-form-group message">
+            <fieldset>
+              <legend>Password</legend>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="app-form-control"
+                placeholder="Password"
+                minlength="8"
+                required
+              />
+            </fieldset>
+          </div>
+          <div class="app-form-group buttons">
+            <input
+              type="submit"
+              name="Signup"
+              id="Signup"
+              onclick="register(event)"
+              class="app-form-button"
+              value="Sign-Up"
+            />
+          </div>
+        </form>
       </div>
     </section>
 

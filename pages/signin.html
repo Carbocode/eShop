@@ -67,56 +67,48 @@
     </header>
     <br /><br /><br /><br />
     <section>
-      <div class="screen">
-        <div class="screen-header">
-          <div class="screen-header-left">
-            <div class="screen-header-button close"></div>
-            <div class="screen-header-button maximize"></div>
-            <div class="screen-header-button minimize"></div>
+      <div>
+        <form class="app-form">
+          <div class="app-form-group">
+            <fieldset>
+              <legend>Username</legend>
+              <input
+                name="username"
+                id="username"
+                placeholder="Username"
+                autofocus
+                required
+              />
+            </fieldset>
           </div>
-        </div>
-        <div class="screen-body">
-          <div class="screen-body-item left">
-            <div class="app-title">LOGIN IN</div>
-          </div>
-          <div class="screen-body-item">
-            <form class="app-form">
-              <div class="app-form-group message">
-                <input
-                  name="username"
-                  id="username"
-                  class="app-form-control"
-                  placeholder="Username"
-                  autofocus
-                  required
-                />
-              </div>
-              <div class="app-form-group message">
+          <div class="app-form-group">
+            <fieldset>
+                <legend>Password</legend>
                 <input
                   type="password"
                   name="password"
                   id="password"
-                  class="app-form-control"
                   placeholder="Password"
                   minlength="8"
                   required
                 />
-              </div>
-              <div class="app-form-group buttons">
+            </fieldset>
+            
+          </div>
+          <div class="app-form-group buttons">
                 <input
                   type="submit"
                   name="Signin"
                   id="Signin"
                   onclick="login(event)"
-                  class="app-form-button"
                   value="Sign-In"
                 />
               </div>
-            </form>
+            </fieldset>
+            
+        </form>
 
-            <div id="risultato"></div>
-          </div>
-        </div>
+        <div id="risultato"></div>
       </div>
     </section>
 

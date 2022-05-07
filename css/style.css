@@ -159,3 +159,33 @@ table {
     background-color: var(--secondary-color);
     color: white;
   }
+
+  .app-form-group{
+      color: black;
+      margin: 5px;
+      width: 50%;
+    
+  }
+  .app-form-group fieldset{
+      border-radius: 10px;
+      border: 2px solid;
+    border-color: black;
+    background-color: white;
+  }
+
+  .app-form-group legend{
+    border: 2px solid;
+    border-color: black;
+      padding: 2px 5px;
+      border-radius: 5px;
+  background-color: white;
+}
+  
+  .app-form-group input{
+      width: 100%;
+    border:none;
+  }
+
+  .app-form-group input:focus-visible{
+      outline: none;
+}
