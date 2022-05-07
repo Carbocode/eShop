@@ -51,13 +51,8 @@ function showTable($pdo)
     $message = "";
     $message = $message .
         "<tr>
-        <th>
-        <div class='screen-header-left'>
-            <div class='screen-header-button close'></div>
-            <div class='screen-header-button maximize'></div>
-            <div class='screen-header-button minimize'></div>
-        </div>
-        </th>
+        <th></th>
+        <th>N°</th>
         <th>Username</th>
         <th>Email</th>
         <th>Password</th>
@@ -74,7 +69,9 @@ function showTable($pdo)
         $i++;
         $message = $message .
             "<tr class='item'>
-                <td>$i</td><td>" . $row["username"] . "</td> 
+                <td><input type='checkbox' /></td>
+                <td>$i</td>
+                <td>" . $row["username"] . "</td> 
                 <td>" . $row["email"] . "</td> 
                 <td>" . $row["pass"] . "</td> 
                 <td>" . $row["nome"] . "</td> 

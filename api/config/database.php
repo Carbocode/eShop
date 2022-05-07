@@ -35,20 +35,22 @@ class DatabaseService
         id_prod INT PRIMARY KEY,
         nome TEXT NOT NULL,
         prezzo DOUBLE NOT NULL,
-        img TEXT NOT NULL,
         descr TEXT,
         vertices INT,
         weightMB DOUBLE,
         rating INT)",
+    "CREATE TABLE IF NOT EXISTS productimages(
+        id_img INT PRIMARY KEY,
+        nome TEXT NOT NULL,
+        src TEXT NOT NULL,
+        descr TEXT),
     "CREATE TABLE IF NOT EXISTS ordini(
         username VARCHAR(30),
         id_prod INT,
         rating INT,
+        nome TEXT,
+        descr TEXT,
         PRIMARY KEY(username, id_prod))",
-    "CREATE TABLE IF NOT EXISTS popularity(
-        id_prod INT PRIMARY KEY,
-        views INT,
-        downloads INT)",
 ];
 
 $pdo->query("CREATE DATABASE IF NOT EXISTS $dbName");

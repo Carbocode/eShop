@@ -1,6 +1,5 @@
 
 .screen-fixed{
-    cursor: pointer;
     position: fixed;
     top: 0;
     left: 0;
@@ -20,8 +19,7 @@
 }
 
 .screen {
-    cursor: default;
-    padding: 5px;
+    padding: 15px;
     z-index: 13;
     margin: auto;
     min-width: 90%;
@@ -30,15 +28,6 @@
     background-color: white;
     border-radius: 15px;
     max-width: 1000px;
-}
-
-.screen-header {
-  display: flex;
-  float: right;
-  align-items: center;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  width: 100%;
 }
 
 .screen-header-button {
@@ -65,7 +54,7 @@ transform: translate(50%,-50%);
     grid-gap: 10px;
 }
 
-.screen-body-item.left {
+.screen-body-section.left {
   display: flex;
   flex-direction: column;
   object-fit: cover;
@@ -74,14 +63,33 @@ transform: translate(50%,-50%);
   border-bottom-left-radius: 15px;
 }
 
-.screen-body-item.right {
-    background-color: var(--secondary-color);
+.screen-body-section.right{
+    object-fit: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .screen-body-section.right img{
+      margin-bottom: 20px;
     object-fit: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    box-shadow: rgba(0, 0, 0, 0.40) 0px 1px 6px;
     border-radius: 15px;
-    display: flex;
-    flex-direction: column;
+  }
+
+  .screen-body-section.right .card-text{
+    box-shadow: rgba(0, 0, 0, 0.40) 0px 1px 6px;
+    border-radius: 15px;
+  }
+
+  .screen-body-section.right .card-text h1{
+    color: black;
+  }
+
+  .screen-body-section.right>p{
+    color: black;
   }
 
 @media screen and (max-width: 1000px) {
@@ -94,7 +102,7 @@ transform: translate(50%,-50%);
         grid-template-columns: repeat(1, 1fr);
     }
   
-    .screen-body-item.left {
+    .screen-body-section.left {
       margin-bottom: 30px;
     }
   }

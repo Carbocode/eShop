@@ -52,8 +52,8 @@ if ($headers["Authorization"] !== "null") {
 
 if (empty($settings)) {
     $settings = $settings .
-        "<li class='navbar-hover'><a href='/pages/signin'><i class='fa-solid fa-right-to-bracket'></i>Log-In</a></li>" .
-        "<li class='navbar-hover'><a href='/pages/signup'><i class='fa-solid fa-address-card'></i>Registrati</a></li>";
+        "<li class='navbar-hover'><a onclick='loadLogin(event)'><i class='fa-solid fa-right-to-bracket'></i>Log-In</a></li>" .
+        "<li class='navbar-hover'><a onclick='loadRegister(event)'><i class='fa-solid fa-address-card'></i>Registrati</a></li>";
 }
 
 echo json_encode(

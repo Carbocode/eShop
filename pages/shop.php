@@ -77,10 +77,10 @@
             <div onclick="closeScreen()" class="screen-header-button"><i class="fa-solid fa-xmark"></i></div>
             <div class="screen">
                 <div class="screen-body">
-                    <div class="screen-body-item left" style="color:black;">
+                    <div class="screen-body-section left" style="color:black;">
                     Qui ci va il visualizzatore dei modelli 3D
                     </div>
-                    <div class="screen-body-item right">
+                    <div class="screen-body-section right">
                     ${lol.innerHTML}
                     <p style='padding:10px; margin-bottom: 30px'>${lol.dataset.description}</p>
                     <button onclick="addToCart(${lol.dataset.id})" style='width:50%; margin: 10px auto; padding: 5px'>Aggiungi al carrello</button>
@@ -118,13 +118,6 @@
             setCookie("cart", cart, 365);
         }
 
-    }
-
-    function closeScreen() {
-        $(".screen-fixed").remove()
-        $('body').css({
-            overflow: 'scroll'
-        });
     }
     </script>
 
