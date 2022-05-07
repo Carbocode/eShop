@@ -1,0 +1,41 @@
+.screen-body-item{
+    background-color: white;
+    padding: 15px;
+    margin: auto;
+    border: none;
+    color: black;
+    text-shadow: 0px 0px 4px rgb(182, 182, 182);
+    font-size: 40px;
+    border-radius: 20px;
+  }
+
+  .app-form-group{
+    text-shadow: none;
+    font-size: 15px;
+      color: black;
+      margin: 5px;
+      width: 50%;
+    
+  }
+  .app-form-group fieldset{
+      border-radius: 5px;
+      border: 2px solid;
+    border-color: rgb(122, 122, 122);
+    background-color: rgb(240, 240, 240);
+  }
+
+  .app-form-group legend{
+      color: rgb(88, 88, 88);
+      padding: 2px 5px;
+      border-radius: 5px;
+}
+  
+  .app-form-group input{
+    background-color: rgb(240, 240, 240);
+      width: 100%;
+    border:none;
+  }
+
+  .app-form-group input:focus-visible{
+      outline: none;
+}

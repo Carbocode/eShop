@@ -69,7 +69,8 @@
     <br /><br /><br />
 
     <section>
-      <div class="screen-body-item">
+      <fieldset class="screen-body-item">
+        <legend>Aggiungi Prodotto</legend>
         <form class="app-form" method="post" enctype="multipart/form-data">
           <div class="app-form-group message">
             <fieldset>
@@ -111,7 +112,8 @@
               <legend>Prezzo</legend>
               <input
                 type="number"
-                step="0.01"
+                step="any"
+                min="0"
                 name="price"
                 id="price"
                 placeholder="Prezzo"
@@ -129,7 +131,7 @@
             />
           </div>
         </form>
-      </div>
+      </fieldset>
     </section>
     <script>
       function addProd(e) {
