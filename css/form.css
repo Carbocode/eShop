@@ -1,10 +1,19 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.12,
+* Autoprefixer: v10.4.4
+* Browsers: last 4 version
+*/
+
 .screen-body-item{
     background-color: white;
+    width: 70%;
+    max-width: 600px;
     padding: 15px;
     margin: auto;
     border: none;
-    color: black;
-    text-shadow: 0px 0px 4px rgb(182, 182, 182);
+    color: #0084ff;
+    text-shadow: 1px 1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, -1px -1px 0 #FFF, 1px 0px 0 #FFF, 0px 1px 0 #FFF, -1px 0px 0 #FFF, 0px -1px 0 #FFF;
     font-size: 40px;
     border-radius: 20px;
   }

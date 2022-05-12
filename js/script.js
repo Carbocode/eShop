@@ -1,5 +1,9 @@
 $( document ).ready(loadSettings());
 
+if (sessionStorage.getItem("token") === null) { 
+        document.cookie = 'ident=; Max-Age=-99999999;';
+  }
+
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -145,7 +149,7 @@ function loadRegister(e) {
             </div>
             <div class="app-form-group">
               <fieldset>
-                <legend>Password</legend>
+                <legend>E-Mail</legend>
                 <input
                   type="email"
                   id="email"
@@ -273,6 +277,8 @@ if (!sessionStorage.length) {
 window.addEventListener("storage", (event) => {
     if (event.key == "logoutAll") {
         sessionStorage.removeItem("token")
+        document.cookie = 'ident=; Max-Age=-99999999;';
+        document.cookie = 'cart=; Max-Age=-99999999;';
     }
    loadSettings()
 })

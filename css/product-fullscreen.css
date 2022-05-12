@@ -57,22 +57,26 @@ transform: translate(50%,-50%);
 .screen-body-section.left {
   display: flex;
   flex-direction: column;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   border-bottom-left-radius: 15px;
 }
 
 .screen-body-section.right{
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
   }
 
   .screen-body-section.right img{
+      height: auto !important;
       margin-bottom: 20px;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     box-shadow: rgba(0, 0, 0, 0.40) 0px 1px 6px;

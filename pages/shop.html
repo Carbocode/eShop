@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Title</title>
+    <title>DefaultCube</title>
     <link rel="stylesheet" href="../css/style.css" />
     <script
       src="https://kit.fontawesome.com/7ad7bfae68.js"
@@ -13,9 +13,9 @@
     <script src="../js/script.js"></script>
   </head>
 
-  <body style="background-color: rgb(252, 252, 252)">
+  <body>
     <header>
-      <div class="navbar" style="position: relative">
+      <div class="navbar">
         <div class="account">
           <input id="account-dropdown" type="checkbox" />
           <div class="account-dropdown">
@@ -66,57 +66,83 @@
         </div>
       </div>
     </header>
+    <br />
 
-    <h1 id="side-panel" style="color: rgb(121, 121, 121)">
-      <i class="fa-solid fa-list" style="font-size: 25px"></i>
-    </h1>
-    <input id="side-panel" type="checkbox" style="opacity: 0" />
-
-    <div class="sidenav">
-      <ul>
-        <li>
-          <a href="#" onclick="crud('read', 'account')"
-            ><i class="fa-solid fa-address-book"></i>Utenti</a
-          >
-        </li>
-        <li>
-          <a href="#" onclick="crud('read', 'products')"
-            ><i class="fa-solid fa-bag-shopping"></i>Articoli</a
-          >
-        </li>
-      </ul>
-    </div>
-
-    <div class="main">
-      <table id="table"></table>
-    </div>
+    <h1 style="font-size: 45px; margin: 100px 20px 20px 20px">Prodotti</h1>
+    <section class="store" id="products"></section>
 
     <script>
-      $(document).ready(crud("read", "account"));
+      $(document).ready(loadProducts());
 
-      function crud(action, table, id) {
-        if (id === undefined) id = "0";
-
+      function loadProducts() {
         $.ajax({
           type: "POST",
           contentType: "application/json; charset=utf-8",
-          url: "/api/table.php",
-          headers: { Authorization: sessionStorage.getItem("token") },
-          data: JSON.stringify({
-            what: action,
-            where: table,
-            who: id,
-          }),
+          url: "/api/products.php",
+          headers: {
+            Authorization: sessionStorage.getItem("token"),
+          },
           dataType: "JSON",
           encode: true,
           success: function (res) {
+            document.getElementById("products").innerHTML = res.products;
             if (res.alert != "") alert(res.alert);
-            document.getElementById("table").innerHTML = res.message;
           },
           error: function (jqXHR, textStatus, errorThrown) {
             if (errorThrown != "") alert(errorThrown);
           },
         });
+      }
+
+      function fullScreen(lol) {
+        $("body").css({
+          overflow: "hidden",
+        });
+        $("body").append(
+          `<div class="screen-fixed">
+            <div onclick="closeScreen()" class="screen-header-button"><i class="fa-solid fa-xmark"></i></div>
+            <div class="screen">
+                <div class="screen-body">
+                    <div class="screen-body-section left" style="color:black;">
+                    Qui ci va il visualizzatore dei modelli 3D
+                    </div>
+                    <div class="screen-body-section right">
+                    ${lol.innerHTML}
+                    <p style='padding:10px; margin-bottom: 30px'>${lol.dataset.description}</p>
+                    <button onclick="addToCart(${lol.dataset.id})" style='width:50%; margin: 10px auto; padding: 5px'>Aggiungi al carrello</button>
+                    </div>
+                </div>
+            </div>
+        </div>`
+        );
+      }
+
+      function addToCart(lol) {
+        cookie = getCookie("cart");
+        if (cookie != "") {
+          obj = JSON.parse(cookie);
+          cookie = getCookie("cart");
+          obj = JSON.parse(cookie);
+
+          alreadyExisting = false;
+          for (var i = 0; i < obj.products.length; i++) {
+            if (obj.products[i] == lol) {
+              alreadyExisting = true;
+              alert("Prodotto già nel carrello");
+              break;
+            }
+          }
+          if (!alreadyExisting) {
+            obj.products.push(lol);
+            cookie = JSON.stringify(obj);
+            setCookie("cart", cookie, 365);
+          }
+        } else {
+          cart = JSON.stringify({
+            products: [lol],
+          });
+          setCookie("cart", cart, 365);
+        }
       }
     </script>
   </body>

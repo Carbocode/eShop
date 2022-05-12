@@ -60,7 +60,7 @@ if (!empty($username) && !empty($password)) {
                 'expires' => time() + 86400,
                 'path' => '/',
                 'domain' => 'localhost',
-                'secure' => true,
+                //'secure' => true,
                 'httponly' => true,
                 'samesite' => 'Strict',
             ]);

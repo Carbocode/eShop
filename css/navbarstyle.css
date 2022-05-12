@@ -1,5 +1,14 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.12,
+* Autoprefixer: v10.4.4
+* Browsers: last 4 version
+*/
+
 .navbar {
     background-color: var(--secondary-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   float: inherit;
   width: 100%;
@@ -18,7 +27,8 @@
   display: block;
   background-image: url("../img/shopping-cart.png");
   background-size: contain;
-  filter: invert();
+  -webkit-filter: invert();
+          filter: invert();
   min-width: var(--navbar);
   min-height: var(--navbar);
 }
@@ -34,6 +44,8 @@
 }
 
 .dropdown {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   list-style: none;
   float: right;
@@ -55,14 +67,16 @@
   margin: 4px;
   height: var(--navbar);
   background-image: url("..\\img\\propic.png");
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   background-position: 50% 50%;
   background-size: contain;
   border-radius: 100px;
   min-width: var(--navbar);
   max-width: var(--navbar);
   cursor: pointer;
-  box-shadow: 0px 0px 2px 0px rgb(77, 77, 77);
+  -webkit-box-shadow: 0px 0px 2px 0px rgb(77, 77, 77);
+          box-shadow: 0px 0px 2px 0px rgb(77, 77, 77);
 }
 
 .burger {
@@ -92,12 +106,15 @@
   height: 5px;
   background-color: rgb(255, 255, 255);
   margin: 6px 0;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
   transition: 0.4s;
 }
 
 #burgermenu:checked ~ .burger .bar1 {
   -webkit-transform: rotate(45deg) translate(-8px, 8px);
-  transform: rotate(45deg) translate(8px, 8px);
+  -ms-transform: rotate(45deg) translate(8px, 8px);
+      transform: rotate(45deg) translate(8px, 8px);
 }
 
 #burgermenu:checked ~ .burger .bar2 {
@@ -106,7 +123,8 @@
 
 #burgermenu:checked ~ .burger .bar3 {
   -webkit-transform: rotate(-45deg) translate(9px, -6px);
-  transform: rotate(-45deg) translate(9px, -6px);
+  -ms-transform: rotate(-45deg) translate(9px, -6px);
+      transform: rotate(-45deg) translate(9px, -6px);
 }
 
 #burgermenu:checked ~ .dropdown {
@@ -151,13 +169,18 @@ NAVBAR HOVER
   background-color: var(--secondary-color);
   min-width: 160px;
   border-radius: 10px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   top: 60px;
   padding: 10px;
   z-index: 3;
   display: none;
+  -webkit-transition: left 1s;
+  -o-transition: left 1s;
   transition: left 1s;
-  transition-delay: 0.2s;
+  -webkit-transition-delay: 0.2s;
+       -o-transition-delay: 0.2s;
+          transition-delay: 0.2s;
 }
 
 #account-dropdown {
@@ -175,11 +198,13 @@ NAVBAR HOVER
 
 #account-dropdown:checked ~ .account-dropdown{
     left: 7px;
-    display: block;
+    display: inline-block;
 }
 
-.navbar-hover {
-  padding: 5px;
+
+.navbar-hover{
+    display: block;
+    padding: 5px;
 }
 
 .navbar-hover:hover {
