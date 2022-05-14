@@ -20,7 +20,6 @@ body {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   letter-spacing: 1.4px;
-  color: var(--text-color)
 }
 
 a {
@@ -35,7 +34,6 @@ h4,
 h5,
 h6,
 p {
-  color: var(--text-color);
   margin: 0;
   padding: 0;
 }
@@ -202,4 +200,20 @@ table {
 
   .goog-te-banner-frame.skiptranslate {
     display: none !important;
-    } 
+    }
+
+    .niceEdit-panel, .niceEdit-panel div{
+        width: auto;
+    }
+
+    .tools{
+        font-size: 30px;
+        padding: 5px;
+        
+        text-align: center;
+    }
+
+    .tools i{
+        cursor: pointer;
+        margin: 5px 15px;
+    }

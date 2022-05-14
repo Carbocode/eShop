@@ -277,8 +277,8 @@ if (!sessionStorage.length) {
 window.addEventListener("storage", (event) => {
     if (event.key == "logoutAll") {
         sessionStorage.removeItem("token")
-        document.cookie = 'ident=; Max-Age=-99999999;';
-        document.cookie = 'cart=; Max-Age=-99999999;';
+        setCookie("ident", null, -99999999);
+        setCookie("cart", null, -99999999);
     }
    loadSettings()
 })

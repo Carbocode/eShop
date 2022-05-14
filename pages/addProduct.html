@@ -7,10 +7,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/script.js"></script>
-    <script
-      src="https://kit.fontawesome.com/7ad7bfae68.js"
-      crossorigin="anonymous"
-    ></script>
+    <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -99,12 +96,18 @@
           <div class="app-form-group buttons">
             <fieldset>
               <legend>Descrizione</legend>
-              <textarea
-                name="description"
-                id="description"
-                placeholder="Descrizione"
-                class="app-form-control"
-              ></textarea>
+              <div
+                style="font-weight: 100; color: black; letter-spacing: normal"
+              >
+                <textarea
+                  cols="80"
+                  style="height: 300px"
+                  id="area2"
+                  name="description"
+                  id="description"
+                >
+                </textarea>
+              </div>
             </fieldset>
           </div>
           <div class="app-form-group buttons">
@@ -133,10 +136,14 @@
         </form>
       </fieldset>
     </section>
-    <script>
+    <script type="text/javascript" src="../js/textEditor.js"></script>
+    <script type="text/javascript">
+      bkLib.onDomLoaded(function () {
+        new nicEditor({ fullPanel: true }).panelInstance("area2");
+      });
+
       function addProd(e) {
         e.preventDefault();
-
         $.ajax({
           type: "POST",
           contentType: "application/json; charset=utf-8",
@@ -145,7 +152,7 @@
           data: JSON.stringify({
             name: $("#name").val(),
             price: $("#price").val(),
-            description: $("#description").val(),
+            description: $(".nicEdit-main").text(),
           }),
           dataType: "JSON",
           encode: true,

@@ -31,9 +31,9 @@ if ($headers["Authorization"] !== "null") {
     if ($auth->isLogged()) {
         $settings = $settings .
             "<li ><a class='navbar-hover'><i class='fa-solid fa-user'></i>Profilo</a></li>" .
-            "<li ><a class='navbar-hover'><i class='fa-solid fa-truck-fast'></i>Ordini</a></li>" .
-            "<li ><a class='navbar-hover'><i class='fa-solid fa-gear'></i>Impostazioni</a></li>" .
-            "<br><li onClick='logout(event)'><a class='navbar-hover' id='logout'><i class='fa-solid fa-right-from-bracket'></i>Esci</a></li><br>";
+            "<li ><a class='navbar-hover'><i class='fa-solid fa-truck'></i></i>Ordini</a></li>" .
+            "<li ><a class='navbar-hover'><i class='fa-solid fa-cog'></i></i>Impostazioni</a></li>" .
+            "<br><li onClick='logout(event)'><a class='navbar-hover' id='logout'><i class='fa-solid fa-sign-out-alt'></i></i>Esci</a></li><br>";
 
         if ($auth->isAdmin()) {
             /*$stmt = $pdo->query("SELECT tipo FROM account WHERE username='$nome'");
@@ -41,8 +41,8 @@ if ($headers["Authorization"] !== "null") {
             foreach ($stmt->fetchAll(PDO::FETCH_COLUMN) as $row) {
                 if ($row == 'admin') {*/
             $settings = $settings .
-                "<li ><a class='navbar-hover' href='/pages/addProduct'><i class='fa-solid fa-sack-dollar'></i>Vendi</a></li>" .
-                "<li ><a class='navbar-hover' href='/pages/admin'><i class='fa-solid fa-screwdriver-wrench'></i>Pannello di Controllo</a></li>";
+                "<li ><a class='navbar-hover' href='/pages/addProduct'><i class='fa-solid fa-coins'></i></i>Vendi</a></li>" .
+                "<li ><a class='navbar-hover' href='/pages/admin'><i class='fa-solid fa-tools'></i>Pannello di Controllo</a></li>";
             /*}
             }
         }*/
@@ -52,7 +52,7 @@ if ($headers["Authorization"] !== "null") {
 
 if (empty($settings)) {
     $settings = $settings .
-        "<li ><a class='navbar-hover' onclick='loadLogin(event)'><i class='fa-solid fa-right-to-bracket'></i>Log-In</a></li>" .
+        "<li ><a class='navbar-hover' onclick='loadLogin(event)'><i class='fa-solid fa-sign-in-alt'></i></i>Log-In</a></li>" .
         "<li ><a class='navbar-hover' onclick='loadRegister(event)'><i class='fa-solid fa-address-card'></i>Registrati</a></li>";
 }
 

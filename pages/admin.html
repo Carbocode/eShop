@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Title</title>
     <link rel="stylesheet" href="../css/style.css" />
-    <script
-      src="https://kit.fontawesome.com/7ad7bfae68.js"
-      crossorigin="anonymous"
-    ></script>
+    <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/script.js"></script>
   </head>
@@ -81,20 +78,79 @@
         </li>
         <li>
           <a href="#" onclick="crud('read', 'products')"
-            ><i class="fa-solid fa-bag-shopping"></i>Articoli</a
+            ><i class="fa-solid fa-shopping-bag"></i>Articoli</a
           >
         </li>
       </ul>
     </div>
 
     <div class="main">
+      <div class="tools">
+        <i class="fa-solid fa-trash-alt"></i>
+        <i class="fa-solid fa-edit"></i>
+      </div>
       <table id="table"></table>
     </div>
 
     <script>
+      //pagina pronta, legge la tabella account
       $(document).ready(crud("read", "account"));
 
+      //ascolto tutti gli eventi click
+      document.addEventListener("click", (event) => {
+        //se il click è sulla checkbox della tabella eseguo il codice
+        if (event.target.id == "table") {
+          lol =
+            document.getElementById("table").rows[event.target.dataset.id]
+              .cells[2].innerHTML;
+
+          //se la casella è stata spuntata aggiungo l'elemento ad un coockie
+          if (event.target.checked) {
+            cookie = getCookie("table"); //prendo il cookie
+            // se vuoto lo creo da 0, altrimenti aggiungo in fondo
+            if (cookie != "" && cookie != "null") {
+              obj = JSON.parse(cookie);
+              cookie = getCookie("table");
+              obj = JSON.parse(cookie);
+
+              obj.selected.push(lol);
+              cookie = JSON.stringify(obj);
+              setCookie("table", cookie, 365);
+            } else {
+              table = JSON.stringify({
+                selected: [lol],
+              });
+              setCookie("table", table, 365);
+            }
+          }
+          //se la spunta viene tolta tolgo l'elemento dal cookie
+          else {
+            cookie = getCookie("table");
+            obj = JSON.parse(cookie);
+            cookie = getCookie("table");
+            obj = JSON.parse(cookie);
+
+            //ricerco l'emento nel cookie
+            position = -1;
+            alreadyExisting = false;
+            for (let i = 0; i < obj.selected.length && !alreadyExisting; i++) {
+              if (obj.selected[i] == lol) {
+                alreadyExisting = true;
+                position = i;
+                break;
+              }
+            }
+            console.log(position);
+            console.log(obj.selected);
+            obj.selected.splice(position, 1); //rimuovo l'elemento
+            cookie = JSON.stringify(obj);
+            setCookie("table", cookie, 365);
+          }
+        }
+      });
+
       function crud(action, table, id) {
+        setCookie("table", null, -99999999);
         if (id === undefined) id = "0";
 
         $.ajax({

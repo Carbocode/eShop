@@ -74,7 +74,7 @@ function showTable($pdo, $table)
         foreach ($data as $row) {
             $i++;
             $message = $message . '<tr>';
-            $message = $message . "<td><input type='checkbox' /></td><td>$i</td>";
+            $message = $message . "<td><input type='checkbox' id='table' data-id='$i'/></td><td>$i</td>";
 
             foreach ($row as $cell) {
                 $message = $message . '<td>' . htmlspecialchars($cell) . '</td>';
