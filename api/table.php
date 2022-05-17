@@ -30,17 +30,19 @@ if ($headers["Authorization"] !== "null") {
     die();
 }
 
+$items = json_decode($data->who);
+
 if (isset($data->what)) {
     switch ($data->what) {
         case "read":
             $message = $message . showTable($pdo, $data->where);
             break;
         case "delete":
-            $alert = $alert . delete($pdo, $data->where, $data->who);
+            $alert = $alert . delete($pdo, $data->where, $items);
             $message = $message . showTable($pdo, $data->where);
             break;
         case "update":
-            $alert = $alert . update($pdo, $data->where, $data->who);
+            $alert = $alert . update($pdo, $data->where, $items);
             $message = $message . showTable($pdo, $data->where);
             break;
     }
@@ -57,11 +59,11 @@ function showTable($pdo, $table)
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $columnCount = $stmt->columnCount();
 
-    $message = $message . '<table>';
+    $message = $message . '<table id="tableElement" data-table-name="' . $table . '">';
     // Display table header
     $message = $message . '<thead>';
     $message = $message . '<tr>';
-    $message = $message . '<th></th><th>N°</th>';
+    $message = $message . '<th></th>';
 
     for ($i = 0; $i < $columnCount; $i++) {
         $message = $message . '<th>' . htmlspecialchars($stmt->getColumnMeta($i)['name']) . '</th>';
@@ -74,7 +76,7 @@ function showTable($pdo, $table)
         foreach ($data as $row) {
             $i++;
             $message = $message . '<tr>';
-            $message = $message . "<td><input type='checkbox' id='table' data-id='$i'/></td><td>$i</td>";
+            $message = $message . "<td><input type='checkbox' id='table' data-id='$i'/></td>";
 
             foreach ($row as $cell) {
                 $message = $message . '<td>' . htmlspecialchars($cell) . '</td>';
@@ -88,16 +90,21 @@ function showTable($pdo, $table)
     return $message;
 }
 
-function delete($pdo, $table, $id)
+function delete($pdo, $table, $items)
 {
-    $pdo->query("DELETE FROM $table WHERE username='$id'");
-    return " $id è stato appena eliminato";
+    foreach ($items as $id) {
+        $pdo->query("DELETE FROM $table WHERE id='$id'");
+    }
+    return "$items è stato appena eliminato";
 }
 
-function update($pdo, $table, $id)
+function update($pdo, $table, $items)
 {
-    $pdo->query("UPDATE $table SET tipo='admin' WHERE username='$id'");
-    return "$id è stato appena upgradato";
+    foreach ($items as $id) {
+        $pdo->query("UPDATE $table SET tipo='admin' WHERE username='$id'");
+    }
+
+    return "$items è stato appena upgradato";
 }
 
 echo json_encode(

@@ -47,16 +47,16 @@ if (trim(isset($data->description))) {
 }
 
 if (!empty($name) && !empty($price) && !empty($description)) {
-    $idProd = 0;
+    $id = 0;
 
-    $stmt = $pdo->query("SELECT * FROM products order by id_prod desc limit 1");
+    $stmt = $pdo->query("SELECT * FROM products order by id desc limit 1");
     if ($stmt->rowCount() > 0) {
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
-            $idProd = 1 + $row['id_prod'];
+            $id = 1 + $row['id'];
         }
     }
 
-    $query = "INSERT INTO products(id_prod, nome, prezzo, img, descr) value($idProd, '$name', $price, '', '$description')";
+    $query = "INSERT INTO products(id, nome, prezzo, img, descr) value($id, '$name', $price, '', '$description')";
     $pdo->query($query);
 
     $alertSuccess = $alertSuccess . "Prodotto aggiunto\n";

@@ -67,28 +67,43 @@
     color:black;
   }
   
-  .sidenav ul li {
+  .sidenav ul li a{
     padding: 5px 5px 5px 22px;
     margin: 10px;
     text-decoration: none;
     font-size: 25px;
     display: block;
+    color:black;
   }
   
-  .sidenav ul li:hover {
+  .sidenav ul li a:hover {
     border-radius: 5px;
   background-color: var(--accent-color);
   }
-
-  .sidenav ul li a{
-      color:black;
-  }
-  
   
   /* Position and style the close button (top right corner) */
   .sidenav .closebtn {
     font-size: 36px;
   }
+
+  .tools{
+      opacity: 0;
+    font-size: 30px;
+    padding: 5px;
+    width: 100%;
+    margin: auto 0;
+    position: fixed;
+    text-align: center;
+}
+
+.tools i{
+    cursor: pointer;
+    margin: 5px 15px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.30) 0px 1px 4px;
+}
   
   /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
   @media screen and (max-height: 450px) {

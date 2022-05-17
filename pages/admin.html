@@ -86,10 +86,10 @@
 
     <div class="main">
       <div class="tools">
-        <i class="fa-solid fa-trash-alt"></i>
-        <i class="fa-solid fa-edit"></i>
+        <i class="fa-solid fa-trash-alt" id="delete"></i>
+        <i class="fa-solid fa-edit" id="edit"></i>
       </div>
-      <table id="table"></table>
+      <div id="table"></div>
     </div>
 
     <script>
@@ -100,54 +100,70 @@
       document.addEventListener("click", (event) => {
         //se il click è sulla checkbox della tabella eseguo il codice
         if (event.target.id == "table") {
-          lol =
-            document.getElementById("table").rows[event.target.dataset.id]
-              .cells[2].innerHTML;
+          selection(event);
+        }
 
-          //se la casella è stata spuntata aggiungo l'elemento ad un coockie
-          if (event.target.checked) {
-            cookie = getCookie("table"); //prendo il cookie
-            // se vuoto lo creo da 0, altrimenti aggiungo in fondo
-            if (cookie != "" && cookie != "null") {
-              obj = JSON.parse(cookie);
-              cookie = getCookie("table");
-              obj = JSON.parse(cookie);
-
-              obj.selected.push(lol);
-              cookie = JSON.stringify(obj);
-              setCookie("table", cookie, 365);
-            } else {
-              table = JSON.stringify({
-                selected: [lol],
-              });
-              setCookie("table", table, 365);
-            }
-          }
-          //se la spunta viene tolta tolgo l'elemento dal cookie
-          else {
-            cookie = getCookie("table");
-            obj = JSON.parse(cookie);
-            cookie = getCookie("table");
-            obj = JSON.parse(cookie);
-
-            //ricerco l'emento nel cookie
-            position = -1;
-            alreadyExisting = false;
-            for (let i = 0; i < obj.selected.length && !alreadyExisting; i++) {
-              if (obj.selected[i] == lol) {
-                alreadyExisting = true;
-                position = i;
-                break;
-              }
-            }
-            console.log(position);
-            console.log(obj.selected);
-            obj.selected.splice(position, 1); //rimuovo l'elemento
-            cookie = JSON.stringify(obj);
-            setCookie("table", cookie, 365);
-          }
+        if (event.target.id == "delete") {
+          items = getCookie("table");
+          items = JSON.parse(items);
+          items = items.selected;
+          table = $("#tableElement").data("tableName");
+          crud("delete", table, items);
         }
       });
+
+      function selection(event) {
+        lol =
+          document.getElementById("tableElement").rows[event.target.dataset.id]
+            .cells[1].innerHTML;
+
+        //se la casella è stata spuntata aggiungo l'elemento ad un coockie
+        if (event.target.checked) {
+          cookie = getCookie("table"); //prendo il cookie
+          // se vuoto lo creo da 0, altrimenti aggiungo in fondo
+          if (cookie != "" && cookie != "null") {
+            obj = JSON.parse(cookie);
+            cookie = getCookie("table");
+            obj = JSON.parse(cookie);
+
+            obj.selected.push(lol);
+            cookie = JSON.stringify(obj);
+            setCookie("table", cookie, 365);
+          } else {
+            table = JSON.stringify({
+              selected: [lol],
+            });
+            setCookie("table", table, 365);
+          }
+        }
+        //se la spunta viene tolta tolgo l'elemento dal cookie
+        else {
+          cookie = getCookie("table");
+          obj = JSON.parse(cookie);
+          cookie = getCookie("table");
+          obj = JSON.parse(cookie);
+
+          //ricerco l'emento nel cookie
+          position = -1;
+          alreadyExisting = false;
+          for (let i = 0; i < obj.selected.length && !alreadyExisting; i++) {
+            if (obj.selected[i] == lol) {
+              alreadyExisting = true;
+              position = i;
+              break;
+            }
+          }
+          obj.selected.splice(position, 1); //rimuovo l'elemento
+          cookie = JSON.stringify(obj);
+          setCookie("table", cookie, 365);
+        }
+        cookie = getCookie("table");
+        if (cookie != null && cookie != '{"selected":[]}') {
+          $(".tools").css("opacity", "100%");
+        } else {
+          $(".tools").css("opacity", "0");
+        }
+      }
 
       function crud(action, table, id) {
         setCookie("table", null, -99999999);

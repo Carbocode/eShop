@@ -88,8 +88,17 @@ if (trim(isset($data->password))) {
     }
 }
 
+$id = 0;
+
+$stmt = $pdo->query("SELECT * FROM account order by id desc limit 1");
+if ($stmt->rowCount() > 0) {
+    foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
+        $id = 1 + $row['id'];
+    }
+}
+
 if ($validUsername && $validEmail && $validName && $validSurname && $validPassword) {
-    $sqlInsert = "INSERT INTO account(username, nome, surname, email, pass, tipo) value('$username', '$name', '$surname', '$email', '$password_hash', 'normale')";
+    $sqlInsert = "INSERT INTO account(id, username, nome, surname, email, pass, tipo) value($id, '$username', '$name', '$surname', '$email', '$password_hash', 'normale')";
     $pdo->query($sqlInsert);
     $alertSuccess = $alertSuccess .  "Registrato con successo";
 }

@@ -25,14 +25,15 @@ class DatabaseService
 
 /*$sqlTables = [
     "CREATE TABLE IF NOT EXISTS account(
-        username VARCHAR(30) PRIMARY KEY,
+        id INT PRIMARY KEY,
+        username VARCHAR(30),
         nome TEXT NOT NULL,
         surname TEXT NOT NULL,
         email TEXT NOT NULL,
         pass TEXT NOT NULL,
         tipo TEXT NOT NULL)",
     "CREATE TABLE IF NOT EXISTS products(
-        id_prod INT PRIMARY KEY,
+        id INT PRIMARY KEY,
         nome TEXT NOT NULL,
         prezzo DOUBLE NOT NULL,
         descr TEXT,
