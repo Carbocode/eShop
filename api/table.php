@@ -30,7 +30,7 @@ if ($headers["Authorization"] !== "null") {
     die();
 }
 
-$items = json_decode($data->who);
+$items = $data->who;
 
 if (isset($data->what)) {
     switch ($data->what) {

@@ -212,7 +212,6 @@
       }
 
       function crud(action, table, id) {
-        setCookie("table", null, -99999999);
         if (id === undefined) id = "0";
 
         $.ajax({
@@ -228,6 +227,7 @@
           dataType: "JSON",
           encode: true,
           success: function (res) {
+            setCookie("table", null, -99999999);
             if (res.alert != "") alert(res.alert);
             document.getElementById("table").innerHTML = res.message;
           },
