@@ -6,12 +6,14 @@
 */
 
 .main{
-    overflow-x: scroll;
+    position: relative;
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
     transition: 0.5s;
+    top: 50px;
 }
 .sidenav {
+    top: 50px;
     height: 100%;
     width: 0;
     position: fixed;
@@ -20,7 +22,7 @@
     left: 0;
     background-color: whitesmoke;
     overflow-x: hidden;
-    padding-top: 30px;
+    padding-top: 50px;
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
     transition: 0.5s;
@@ -30,26 +32,26 @@
     opacity: 0;
   }
 
-#side-panel{
+.side-panel{
     cursor: pointer;
   position: fixed;
   margin: 0px;
   width: 47px;
   height: 47px;
-  left: 10px;
-  top: 47px;
+  left: 6px;
+  top: 60px;
   width: 25px;
   height: 30px;
   z-index: 2;
 }
 
-#side-panel:checked ~ .sidenav {
+.side-panel:checked ~ .sidenav {
     width :250px;
     border-right: solid 1px;
     border-color: rgb(179, 179, 179);
 }
 
-#side-panel:checked ~ .sidenav ul {
+.side-panel:checked ~ .sidenav ul {
     opacity: 1;
     -webkit-transition: opacity 0.1s;
     -o-transition: opacity 0.1s;
@@ -59,7 +61,7 @@
             transition-delay: 0.3s;
 }
 
-#side-panel:checked ~ .main {
+.side-panel:checked ~ .main {
    margin-left :250px;
 }
 
@@ -93,6 +95,7 @@
     width: 100%;
     margin: auto 0;
     position: fixed;
+    z-index: 1;
     text-align: center;
 }
 
@@ -107,6 +110,5 @@
   
   /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
   @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }

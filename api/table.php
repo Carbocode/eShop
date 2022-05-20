@@ -62,17 +62,16 @@ function showTable($pdo, $table)
     $message = $message . '<table id="tableElement" data-table-name="' . $table . '">';
     // Display table header
     $message = $message . '<thead>';
-    $message = $message . '<tr>';
     $message = $message . '<th></th>';
 
     for ($i = 0; $i < $columnCount; $i++) {
         $message = $message . '<th>' . htmlspecialchars($stmt->getColumnMeta($i)['name']) . '</th>';
     }
-    $message = $message . '</tr>';
     $message = $message . '</thead>';
     // If there is data then display each row
     if ($data) {
         $i = 0;
+        $message = $message . '<tbody>';
         foreach ($data as $row) {
             $i++;
             $message = $message . '<tr>';
@@ -83,6 +82,7 @@ function showTable($pdo, $table)
             }
             $message = $message . '</tr>';
         }
+        $message = $message . '</tbody>';
     } else {
         $message = $message . '<tr><td colspan="' . $columnCount . '">No records in the table!</td></tr>';
     }

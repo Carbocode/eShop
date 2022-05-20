@@ -12,7 +12,7 @@
 
   <body style="background-color: rgb(252, 252, 252)">
     <header>
-      <div class="navbar" style="position: relative">
+      <div class="navbar">
         <div class="account">
           <input id="account-dropdown" type="checkbox" />
           <div class="account-dropdown">
@@ -64,12 +64,12 @@
       </div>
     </header>
 
-    <h1 id="side-panel" style="color: rgb(121, 121, 121)">
+    <h1 class="side-panel" style="color: rgb(121, 121, 121)">
       <i class="fa-solid fa-list" style="font-size: 25px"></i>
     </h1>
-    <input id="side-panel" type="checkbox" style="opacity: 0" />
+    <input class="side-panel" type="checkbox" style="opacity: 0" />
 
-    <div class="sidenav">
+    <div id="sidenav" class="sidenav">
       <ul>
         <li>
           <a href="#" onclick="crud('read', 'account')"
@@ -84,7 +84,7 @@
       </ul>
     </div>
 
-    <div class="main">
+    <div id="main" class="main">
       <div class="tools">
         <i class="fa-solid fa-trash-alt" id="delete"></i>
         <i class="fa-solid fa-edit" id="edit"></i>
@@ -103,13 +103,59 @@
           selection(event);
         }
 
+        //se il click è sul bidone eseguo il codice
         if (event.target.id == "delete") {
-          items = getCookie("table");
+          items = getCookie("table"); //ottengo gli elementi selezionati dal COOKIE
           items = JSON.parse(items);
-          items = items.selected;
-          table = $("#tableElement").data("tableName");
+          items = items.selected; //estraggo l'array
+          table = $("#tableElement").data("tableName"); //ottengo il nome della tabella
           crud("delete", table, items);
         }
+      });
+
+      //ascolto tutti gli eventi scroll
+      document.addEventListener("scroll", (event) => {
+        //estraggo l'altezza della pagina rispetto la navbar
+        someDiv = document.getElementById("tableElement");
+        yPosition = someDiv.getBoundingClientRect().top + 9;
+
+        yyPosition = yPosition;
+        yyyPosition = yPosition;
+        if (yPosition < 9) yPosition = 9;
+
+        if (yyyPosition < 0) {
+          yyyPosition = 0;
+        }
+
+        //se la navbar scompare tolgo il pulsante per la foto profilo
+        if (yPosition <= 50) {
+          document.getElementById("account-dropdown").style.display = "none";
+        } else {
+          document.getElementById("account-dropdown").style.display = "block";
+        }
+
+        //imposto l'altezza dinamica del pulsante della sidenav
+        var elements = document.querySelectorAll(".side-panel");
+        elements.forEach(function (element) {
+          element.style.top = `${yPosition}px`;
+        });
+
+        var elements = document.querySelectorAll(".tools");
+        elements.forEach(function (element) {
+          element.style.top = `${yyyPosition}px`;
+        });
+
+        //imposto l'altezza dinamica della sidenav
+        var elements = document.querySelectorAll(".sidenav");
+        elements.forEach(function (element) {
+          element.style.top = `${yPosition - 10}px`;
+        });
+
+        //imposto l'altezza dinamica della sidenav
+        var elements = document.querySelectorAll(".navbar");
+        elements.forEach(function (element) {
+          element.style.top = `${yyPosition - 59}px`;
+        });
       });
 
       function selection(event) {
