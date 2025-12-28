@@ -1,0 +1,213 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.12,
+* Autoprefixer: v10.4.4
+* Browsers: last 4 version
+*/
+
+.navbar {
+    background-color: var(--secondary-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  float: inherit;
+  width: 100%;
+  z-index: 100;
+  position: fixed;
+  border-bottom: solid 1px;
+  border-color: rgb(68, 68, 68);
+}
+
+.cart {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.cart-img {
+  display: block;
+  background-image: url("../img/shopping-cart.png");
+  background-size: contain;
+  -webkit-filter: invert();
+          filter: invert();
+  min-width: var(--navbar);
+  min-height: var(--navbar);
+}
+
+.sections {
+  margin: 0px 6px;
+  height: var(--navbar);
+  color: white;
+  font-size: 30px;
+  line-height:50px;
+  font-weight: bolder;
+  width: 100%;
+}
+
+.dropdown {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  float: right;
+  margin:0px;
+  overflow: hidden;
+}
+
+.dropdown li {
+  height: var(--navbar);
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 5px;
+  font-size: 25px;
+  text-align: center;
+}
+
+.account {
+  padding: 6px;
+  margin: 4px;
+  height: var(--navbar);
+  background-image: url("..\\img\\propic.png");
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-position: 50% 50%;
+  background-size: contain;
+  border-radius: 100px;
+  min-width: var(--navbar);
+  max-width: var(--navbar);
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 2px 0px rgb(77, 77, 77);
+          box-shadow: 0px 0px 2px 0px rgb(77, 77, 77);
+}
+
+.burger {
+  padding: 0px;
+  margin: 5px 0px;
+  height: auto;
+  display: none;
+}
+
+#burgermenu {
+    cursor: pointer;
+  display: none;
+  position: fixed;
+  margin: 0px;
+  width: 36px;
+  height: 50px;
+  right: 56px;
+  opacity: 0;
+  z-index: 1000;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  border-radius: 100px;
+  width: 35px;
+  height: 5px;
+  background-color: rgb(255, 255, 255);
+  margin: 6px 0;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+}
+
+#burgermenu:checked ~ .burger .bar1 {
+  -webkit-transform: rotate(45deg) translate(-8px, 8px);
+  -ms-transform: rotate(45deg) translate(8px, 8px);
+      transform: rotate(45deg) translate(8px, 8px);
+}
+
+#burgermenu:checked ~ .burger .bar2 {
+  opacity: 0;
+}
+
+#burgermenu:checked ~ .burger .bar3 {
+  -webkit-transform: rotate(-45deg) translate(9px, -6px);
+  -ms-transform: rotate(-45deg) translate(9px, -6px);
+      transform: rotate(-45deg) translate(9px, -6px);
+}
+
+#burgermenu:checked ~ .dropdown {
+  height: auto;
+  margin-bottom: 10px;
+}
+
+#burgermenu {
+  display: inline;
+}
+.sections {
+  height: auto;
+}
+
+.dropdown {
+  width: 100%;
+  display: inline-block;
+  height: 0px;
+}
+
+.dropdown li {
+    line-height:normal;
+  text-align: left;
+  padding: 0px;
+}
+
+.burger {
+  float: right;
+  display: inline-block;
+}
+/*-------------------------------------------------------
+
+NAVBAR HOVER
+
+-------------------------------------------------------*/
+
+.account-dropdown {
+    border: solid 1px;
+  border-color: rgb(68, 68, 68);
+  position: absolute;
+  text-align: left;
+  background-color: var(--secondary-color);
+  min-width: 160px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  top: 60px;
+  padding: 10px;
+  z-index: 3;
+  display: none;
+  -webkit-transition: left 1s;
+  -o-transition: left 1s;
+  transition: left 1s;
+  -webkit-transition-delay: 0.2s;
+       -o-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+
+#account-dropdown {
+    cursor: pointer;
+  position: fixed;
+  margin: 0px;
+  width: 47px;
+  height: 47px;
+  left: 2px;
+  top: 2px;
+  opacity: 0;
+  z-index: 1000;
+}
+
+
+#account-dropdown:checked ~ .account-dropdown{
+    left: 7px;
+    display: inline-block;
+}
+
+
+.navbar-hover{
+    display: block;
+    padding: 5px;
+}
+
+.navbar-hover:hover {
+  border-radius: 5px;
+  background-color: var(--accent-color);
+}

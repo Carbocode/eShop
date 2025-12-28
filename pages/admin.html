@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Title</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="../js/script.js"></script>
+</head>
+
+<body style="background-color: rgb(252, 252, 252)">
+  <header>
+    <div class="navbar">
+      <div class="account">
+        <input id="account-dropdown" type="checkbox" />
+        <div class="account-dropdown">
+          <ul id="#settings">
+            <li></li>
+          </ul>
+        </div>
+      </div>
+      <div class="sections">
+        <a href="/">DefaultCube</a>
+        <input id="burgermenu" type="checkbox" />
+        <div class="burger">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+        <ul class="dropdown">
+          <li>
+            <a href="/pages/shop"><i class="fa-solid fa-store"></i>Prodotti</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-cubes"></i>Diventa un Cuber</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-newspaper"></i>Notizie</a>
+          </li>
+          <div id="google_translate_element"></div>
+          <script type="text/javascript"
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+          <script type="text/javascript">
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement(
+                {
+                  pageLanguage: "it",
+                },
+                "google_translate_element"
+              );
+            }
+          </script>
+        </ul>
+      </div>
+      <div class="cart">
+        <a class="cart-img" href="/pages/cart"></a>
+      </div>
+    </div>
+  </header>
+
+  <h1 class="side-panel" style="color: rgb(121, 121, 121)">
+    <i class="fa-solid fa-list" style="font-size: 25px"></i>
+  </h1>
+  <input class="side-panel" type="checkbox" style="opacity: 0" />
+
+  <div id="sidenav" class="sidenav">
+    <ul>
+      <li>
+        <a href="#" onclick="crud('read', 'account')"><i class="fa-solid fa-address-book"></i>Utenti</a>
+      </li>
+      <li>
+        <a href="#" onclick="crud('read', 'products')"><i class="fa-solid fa-shopping-bag"></i>Articoli</a>
+      </li>
+    </ul>
+  </div>
+
+  <div id="main" class="main">
+    <div class="tools">
+      <i class="fa-solid fa-trash-alt" id="delete"></i>
+      <i class="fa-solid fa-edit" id="edit"></i>
+    </div>
+    <div id="table"></div>
+  </div>
+
+  <script>
+    //pagina pronta, legge la tabella account
+    $(document).ready(crud("read", "account"));
+
+    //ascolto tutti gli eventi click
+    document.addEventListener("click", (event) => {
+      //se il click è sulla checkbox della tabella eseguo il codice
+      if (event.target.id == "table") {
+        selection(event);
+      }
+
+      //se il click è sul bidone eseguo il codice
+      if (event.target.id == "delete") {
+        items = getCookie("table"); //ottengo gli elementi selezionati dal COOKIE
+        items = JSON.parse(items);
+        items = items.selected; //estraggo l'array
+        table = $("#tableElement").data("tableName"); //ottengo il nome della tabella
+        crud("delete", table, items);
+      }
+    });
+
+    //ascolto tutti gli eventi scroll
+    document.addEventListener("scroll", (event) => {
+      //estraggo l'altezza della pagina rispetto la navbar
+      someDiv = document.getElementById("tableElement");
+      yPosition = someDiv.getBoundingClientRect().top + 9;
+
+      yyPosition = yPosition;
+      yyyPosition = yPosition;
+      if (yPosition < 9) yPosition = 9;
+
+      if (yyyPosition < 0) {
+        yyyPosition = 0;
+      }
+
+      //se la navbar scompare tolgo il pulsante per la foto profilo
+      if (yPosition <= 50) {
+        document.getElementById("account-dropdown").style.display = "none";
+      } else {
+        document.getElementById("account-dropdown").style.display = "block";
+      }
+
+      //imposto l'altezza dinamica del pulsante della sidenav
+      var elements = document.querySelectorAll(".side-panel");
+      elements.forEach(function (element) {
+        element.style.top = `${yPosition}px`;
+      });
+
+      var elements = document.querySelectorAll(".tools");
+      elements.forEach(function (element) {
+        element.style.top = `${yyyPosition}px`;
+      });
+
+      //imposto l'altezza dinamica della sidenav
+      var elements = document.querySelectorAll(".sidenav");
+      elements.forEach(function (element) {
+        element.style.top = `${yPosition - 10}px`;
+      });
+
+      //imposto l'altezza dinamica della sidenav
+      var elements = document.querySelectorAll(".navbar");
+      elements.forEach(function (element) {
+        element.style.top = `${yyPosition - 59}px`;
+      });
+    });
+
+    function selection(event) {
+      lol =
+        document.getElementById("tableElement").rows[event.target.dataset.id]
+          .cells[1].innerHTML;
+
+      //se la casella è stata spuntata aggiungo l'elemento ad un coockie
+      if (event.target.checked) {
+        cookie = getCookie("table"); //prendo il cookie
+        // se vuoto lo creo da 0, altrimenti aggiungo in fondo
+        if (cookie != "" && cookie != "null") {
+          obj = JSON.parse(cookie);
+          cookie = getCookie("table");
+          obj = JSON.parse(cookie);
+
+          obj.selected.push(lol);
+          cookie = JSON.stringify(obj);
+          setCookie("table", cookie, 365);
+        } else {
+          table = JSON.stringify({
+            selected: [lol],
+          });
+          setCookie("table", table, 365);
+        }
+      }
+      //se la spunta viene tolta tolgo l'elemento dal cookie
+      else {
+        cookie = getCookie("table");
+        obj = JSON.parse(cookie);
+        cookie = getCookie("table");
+        obj = JSON.parse(cookie);
+
+        //ricerco l'emento nel cookie
+        position = -1;
+        alreadyExisting = false;
+        for (let i = 0; i < obj.selected.length && !alreadyExisting; i++) {
+          if (obj.selected[i] == lol) {
+            alreadyExisting = true;
+            position = i;
+            break;
+          }
+        }
+        obj.selected.splice(position, 1); //rimuovo l'elemento
+        cookie = JSON.stringify(obj);
+        setCookie("table", cookie, 365);
+      }
+      cookie = getCookie("table");
+      if (cookie != null && cookie != '{"selected":[]}') {
+        $(".tools").css("opacity", "100%");
+      } else {
+        $(".tools").css("opacity", "0");
+      }
+    }
+
+    function crud(action, table, id) {
+      if (id === undefined) id = "0";
+
+      $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "/api/table.php",
+        headers: { Authorization: sessionStorage.getItem("token") },
+        data: JSON.stringify({
+          what: action,
+          where: table,
+          who: id,
+        }),
+        dataType: "JSON",
+        encode: true,
+        success: function (res) {
+          setCookie("table", null, -99999999);
+          if (res.alert != "") alert(res.alert);
+          document.getElementById("table").innerHTML = res.message;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          if (errorThrown != "") alert(errorThrown);
+        },
+      });
+    }
+  </script>
+</body>
+
+</html>

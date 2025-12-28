@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Title</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="../js/script.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <div class="account">
+        <input id="account-dropdown" type="checkbox" />
+        <div class="account-dropdown">
+          <ul id="#settings">
+            <li></li>
+          </ul>
+        </div>
+      </div>
+      <div class="sections">
+        <a href="/">DefaultCube</a>
+        <input id="burgermenu" type="checkbox" />
+        <div class="burger">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+        <ul class="dropdown">
+          <li>
+            <a href="/pages/shop"><i class="fa-solid fa-store"></i>Prodotti</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-cubes"></i>Diventa un Cuber</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-newspaper"></i>Notizie</a>
+          </li>
+          <div id="google_translate_element"></div>
+          <script type="text/javascript"
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+          <script type="text/javascript">
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement(
+                {
+                  pageLanguage: "it",
+                },
+                "google_translate_element"
+              );
+            }
+          </script>
+        </ul>
+      </div>
+      <div class="cart">
+        <a class="cart-img" href="/pages/cart"></a>
+      </div>
+    </div>
+  </header>
+  <br /><br /><br />
+
+  <section>
+    <fieldset class="screen-body-item">
+      <legend>Aggiungi Prodotto</legend>
+      <form class="app-form" method="post" enctype="multipart/form-data">
+        <div class="app-form-group message">
+          <fieldset>
+            <legend>Foto Prodotto</legend>
+            <input type="file" name="image" id="image" class="app-form-control" accept="image/png, image/jpeg"
+              multiple />
+          </fieldset>
+        </div>
+        <div class="app-form-group message">
+          <fieldset>
+            <legend>Nome</legend>
+            <input name="name" id="name" placeholder="Nome" class="app-form-control" />
+          </fieldset>
+        </div>
+        <div class="app-form-group buttons">
+          <fieldset>
+            <legend>Descrizione</legend>
+            <div style="font-weight: 100; color: black; letter-spacing: normal">
+              <textarea cols="80" style="height: 300px" id="area2" name="description" id="description">
+                </textarea>
+            </div>
+          </fieldset>
+        </div>
+        <div class="app-form-group buttons">
+          <fieldset>
+            <legend>Prezzo</legend>
+            <input type="number" step="any" min="0" name="price" id="price" placeholder="Prezzo"
+              class="app-form-control" />
+          </fieldset>
+        </div>
+        <div class="app-form-group buttons">
+          <input type="submit" name="submitProd" class="app-form-button" value="Add" onclick="addProd(event)" />
+        </div>
+      </form>
+    </fieldset>
+  </section>
+  <script type="text/javascript" src="../js/textEditor.js"></script>
+  <script type="text/javascript">
+    bkLib.onDomLoaded(function () {
+      new nicEditor({ fullPanel: true }).panelInstance("area2");
+    });
+
+    function addProd(e) {
+      e.preventDefault();
+      $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "/api/addProd.php",
+        headers: { Authorization: sessionStorage.getItem("token") },
+        data: JSON.stringify({
+          name: $("#name").val(),
+          price: $("#price").val(),
+          description: $(".nicEdit-main").text(),
+        }),
+        dataType: "JSON",
+        encode: true,
+        success: function (res) {
+          formData = new FormData();
+
+          file = $("#image")[0].files;
+          id = res.id;
+
+          formData.append("file", file[0]);
+          formData.append("id", id);
+          formData.append("alert", res.alert);
+          $.ajax({
+            type: "POST",
+            url: "/api/addImage.php",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+              if (res.alert != "") alert(res.alert);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              if (errorThrown != "") alert(errorThrown);
+            },
+          });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          if (errorThrown != "") alert(errorThrown);
+        },
+      });
+    }
+  </script>
+</body>
+
+</html>

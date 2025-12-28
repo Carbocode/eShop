@@ -1,0 +1,36 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=db
+      - DB_NAME=DefaultCube
+      - DB_USER=root
+      - DB_PASS=root
+    depends_on:
+      - db
+    networks:
+      - eshop-network
+
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: DefaultCube
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - eshop-network
+
+networks:
+  eshop-network:
+    driver: bridge
+
+volumes:
+  db_data:

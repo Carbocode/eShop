@@ -1,0 +1,49 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.12,
+* Autoprefixer: v10.4.4
+* Browsers: last 4 version
+*/
+
+.screen-body-item{
+    background-color: white;
+    width: 70%;
+    max-width: 600px;
+    padding: 15px;
+    margin: auto;
+    border: none;
+    color: #0084ff;
+    text-shadow: 1px 1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, -1px -1px 0 #FFF, 1px 0px 0 #FFF, 0px 1px 0 #FFF, -1px 0px 0 #FFF, 0px -1px 0 #FFF;
+    font-size: 40px;
+    border-radius: 20px;
+  }
+
+  .app-form-group{
+    text-shadow: none;
+    font-size: 15px;
+      color: black;
+      margin: 20px;
+    
+  }
+  .app-form-group fieldset{
+      border-radius: 5px;
+      border: 2px solid;
+    border-color: rgb(122, 122, 122);
+    background-color: rgb(240, 240, 240);
+  }
+
+  .app-form-group legend{
+      color: rgb(88, 88, 88);
+      padding: 2px 5px;
+      border-radius: 5px;
+}
+  
+  .app-form-group input{
+    background-color: rgb(240, 240, 240);
+      width: 100%;
+    border:none;
+  }
+
+  .app-form-group input:focus-visible{
+      outline: none;
+}
