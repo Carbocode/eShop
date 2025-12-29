@@ -42,7 +42,7 @@ Riguardando oggi il progetto, mi rendo conto di quante cose ignorassi all’epoc
 - **Git** il modo breve di definire GitHub.
 - **GitHub** un sito dove si pubblicava il codice per gli altri.
 
-Il risultato è una struttura che oggi definirei senza mezzi termini *particolare* (o un vero e proprio obbrobrio 😅), ma che, sorprendentemente, funzionava.
+Il risultato è una struttura che oggi definirei senza mezzi termini *particolare* (o un vero e proprio obbrobrio), ma che, sorprendentemente, funzionava.
 
 Ricordo ancora quando, a circa un mese dalla maturità, alcuni amici riuscirono a buttare giù il sito tramite **SQL Injection**. All’epoca era hostato su Altervista, modificavo il codice direttamente dall'editor e in locale il codice arrivava di rado, persi qualche settimana di lavoro.
 
@@ -61,7 +61,7 @@ Lavorandoci ho imparato, direttamente “sul campo”, concetti fondamentali com
 Il flusso di rendering era simile a quello oggi adottato dai React Server Components: la pagina HTML veniva renderizzata inizialmente e successivamente arricchita di componenti interattivi forniti dal backend.  
 Non c’era molto da indicizzare, ma il concetto c’era.
 
-## 🧠 Riflessioni Finali
+## Riflessioni Finali
 
 Guardo questo progetto con molta nostalgia: appartiene a un’epoca che i nuovi sviluppatori probabilmente non vivranno mai, e che noi stessi difficilmente rivivremo.
 
@@ -75,4 +75,4 @@ Non mi sento nemmeno di dire che questo salto di qualità sia arrivato grazie al
 
 ---
 
-*Creato con passione (e tanta pazienza) sui banchi di scuola.* 🎓💻
+*Creato con passione (e tanta pazienza) sui banchi di scuola.*
