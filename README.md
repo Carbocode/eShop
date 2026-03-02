@@ -1,6 +1,6 @@
-# eShop – E-Commerce di Modelli 3D
+# 3D Models eShop – E-Commerce di Modelli 3D
 
-**eShop** è un progetto di e-commerce dedicato alla vendita di modelli 3D, sviluppato durante il mio quinto anno di scuola superiore come progetto di informatica.
+**3D Models eShop** è un progetto di e-commerce dedicato alla vendita di modelli 3D, sviluppato durante il mio quinto anno di scuola superiore come progetto di informatica.
 
 Non nasce come un prodotto “industry-ready”, ma come un esperimento ambizioso, costruito con curiosità, determinazione e tanta voglia di imparare.
 
